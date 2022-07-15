@@ -1,0 +1,96 @@
+html{
+    background: url("back-montanas.jpg") no-repeat;
+	background-size: cover;
+    min-height: 100%;
+	background-position: 25%;
+}
+
+body{
+	background-color: transparent;
+}
+
+#registration-form{
+	max-width: 1000px;
+	margin: 120px auto;
+}
+
+#registration-form .image{
+	float:left;
+	background-image: url("publicaciones.jpg");
+	height: 1030px;
+	width: 40%;
+	background-size: cover;
+	background-position: 0%;
+}
+
+#registration-form .frm{
+	float:right;
+	height: 1030px;
+    width: 60%;
+    min-width: 250px;
+    padding: 0 35px;
+    background-size: 100% 100%;
+    background-color: white;
+}
+
+#registration-form .frm1{
+	float:right;
+    width: 100%;
+    min-width: 250px;
+    background-size: 100% 100%;
+    background-color: white;
+}
+
+#registration-form h1{
+	margin-top: 30px;
+	margin-bottom: 20px;
+}
+
+#registration-form .form-control{
+	width: 90%;
+	padding: 12px 20px;
+	height: auto;
+}
+
+@media screen and (max-width: 700px){
+	#registration-form .image{
+		background-image: url("publicacionesV.jpg");
+		width: 30%;
+	    background-position: 0%;
+	}
+
+	#registration-form .frm{
+		width: 70%;
+	}
+	
+	#registration-form .frm1{
+		width: 70%;
+	}	
+
+	#registration-form .form-control{
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 500px){
+	#registration-form .image{
+		display: none;
+	}
+
+	#registration-form .frm{
+		width: 100%;
+	}
+	
+	#registration-form .frm1{
+		width: 100%;
+	}	
+
+	#registration-form h1{
+		text-align: center;
+	}
+
+	#registration-form .btn{
+		width: 100%;
+		margin-top: 20px;
+	}
+}

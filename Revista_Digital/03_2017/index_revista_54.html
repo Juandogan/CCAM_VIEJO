@@ -1,0 +1,1132 @@
+﻿<!DOCTYPE html>
+
+<head>
+<title>CCAM - Centro Cultural Argentino de Montaña</title>
+<meta charset="UTF-8" />
+<!-- CSS -->
+<link href="../../css.css"rel="stylesheet" type="text/css">
+
+ 
+<!-- para que el HTML5 funcione en navegadores anteriores a IE9 -->
+<!--[if lt IE 9]> 
+    <script type="text/javascript"> 
+       document.createElement("nav"); 
+       document.createElement("header"); 
+       document.createElement("footer"); 
+       document.createElement("section"); 
+       document.createElement("article"); 
+       document.createElement("aside"); 
+       document.createElement("hgroup"); 
+    </script>
+<![endif]-->
+
+<!-- o puedo hacer esto.... -->
+<!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+<!--[enlace google fonts]-->
+<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Cuprum' rel='stylesheet' type='text/css'>
+<!--[enlace google fonts]-->
+
+<!--[FAVICON]-->
+<link rel="shortcut icon" type="image/x-icon" href="../../images/favicon.ico">
+
+<!-- [JQuery] -->
+<script type="text/javascript" src="../../js/jquery.js"></script>
+<script type="text/javascript" src="../../js/fade-plugin.js"></script>
+
+<!-- [METAS] -->
+<meta property="og:title" content="Centro Cultural Argentino de Montaña"/>
+<meta property="og:type" content="Centro Cultural Argentino de Montaña"/>
+<meta property="og:url" content="http://www.culturademontania.org.ar/"/>
+<meta property="og:image" content="http://www.culturademontania.org.ar/images/tumb.jpg"/>
+<meta property="og:site_name" content="Centro Cultural Argentino de Montaña"/>
+<meta property="og:description"
+          content="El CCAM es una Institución argentina, fundada el 5 de Julio del 2000 que tiene como misión promover el desarrollo cultural, social y deportivo de las comunidades de montaña."/>
+<meta name="google-translate-customization" content="459f67bb3e902588-72cefb065735ac4a-gb781dc38316d527a-1c"></meta>          
+
+
+<!-- [Shared JAVA] -->
+<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script> 
+<script type="text/javascript">stLight.options({publisher: "1381341a-aa8b-4134-84b4-d24a4b61afa3"}); </script>
+
+<script type="text/javascript" language="javascript">
+    $(document).ready(function($){
+		
+		<!-- Listado de Noticias -->	
+		var botonON = 0;
+
+		$('#listNews_0').children('div #backColorNew_0').css('width', 28);
+		$('#listNews_0').children('div.arrowListNews').css('left', 348);
+		
+		$('#picturesNews li').hide();
+		$('#picturesNews li:first').show();
+			
+				
+		$('#listadoNews li').mouseover(function(){
+			if(botonON != $(this).index()){
+				$(this).children('div.backColorListNews').animate({width:28}, 500);
+				$(this).children('div.arrowListNews').animate({left:348}, 100);
+			}
+		});
+		$('#listadoNews li').mouseleave(function(){
+			if(botonON != $(this).index()){
+				$(this).children('div.backColorListNews').animate({width:348}, 500);
+				$(this).children('div.arrowListNews').animate({left:320}, 100);
+			}
+		});
+		
+		$('#listadoNews li').click(function(){
+			$('#picturesNews li').hide();
+			var activeTab = $(this).attr("noticia"); //Find the href attribute value to identify the active tab + content
+			$(activeTab).fadeIn();
+			
+			$('#listadoNews li').children('div.backColorListNews').css('width', 348);
+			$('#listadoNews li').children('div.arrowListNews').css('left', 320);
+			
+			$(this).children('div.backColorListNews').css('width', 28);
+			$(this).children('div.arrowListNews').css('left', 348);
+			
+			botonON = $(this).index();
+		});
+//incorp		
+		$('#contLogoHeader').click(function(){
+			window.open('http://www.culturademontania.org.ar');
+			return false;
+		});
+		$('#contTitulo').click(function(){
+			window.open('http://www.culturademontania.org.ar');
+			return false;
+		});		
+		$('#contFooter').click(function(){
+			window.open('http://www.culturademontania.org.ar');
+			return false;
+		});				
+//---		
+		
+		$(window).load(function(){
+			
+			<!-- Efecto blan y negro imagenes. -->
+		
+			// Aplicamos el efecto con la clase ".fadegray" en las imagenes que queramos
+			$("img.fadegray").animate({opacity:1},500);
+			
+			// clonamos imagen
+			$('img.fadegray').each(function(){
+				var el = $(this);
+				el.css({"position":"absolute"}).wrap('<div>').clone().addClass('img_escala_grises').css({"position":"absolute","z-index":"666","opacity":"0"}).insertBefore(el).queue(function(){
+					var el = $(this);
+					el.parent().css({"width":this.width,"height":this.height});
+					el.dequeue();
+				});
+				//this.src = escala_grises(this.src); ---- SE QUITA EL GRISADO INICIAL EN LOS CUADROS DE LAS NOTICIAS
+			});
+			
+			// Fade imagen 
+			$('#contNoticiasIndex li').mouseover(function(){
+				$(this).addClass('hover');
+				$(this).children('img').parent().find('img:first').stop().animate({opacity:1}, 500);
+			})
+			$('#contNoticiasIndex li').mouseout(function(){
+				$(this).removeClass('hover');
+				//$(this).children('img').parent().find('img:first').stop().animate({opacity:0}, 1000);
+				$(this).children('img').parent().find('img:first').stop().animate({opacity:1}, 1000);
+			})
+			$('#contNoticiasIndex li').click(function(){
+				//window.location = $(this).attr('href'); this.target = '_blank';
+				window.open($(this).attr('href'));
+			})
+			
+			// Canvas
+			function escala_grises(src){
+				var canvas = document.createElement('canvas');
+				var ctx = canvas.getContext('2d');
+				var imgObj = new Image();
+				imgObj.src = src;
+				canvas.width = imgObj.width;
+				canvas.height = imgObj.height;
+				ctx.drawImage(imgObj, 0, 0);
+				var imgPixels = ctx.getImageData(0, 0, canvas.width, canvas.height);
+				for(var y = 0; y < imgPixels.height; y++){
+					for(var x = 0; x < imgPixels.width; x++){
+						var i = (y * 4) * imgPixels.width + x * 4;
+						var avg = (imgPixels.data[i] + imgPixels.data[i + 1] + imgPixels.data[i + 2]) / 3;
+						imgPixels.data[i] = avg;
+						imgPixels.data[i + 1] = avg;
+						imgPixels.data[i + 2] = avg;
+					}
+				}
+				ctx.putImageData(imgPixels, 0, 0, 0, 0, imgPixels.width, imgPixels.height);
+				return canvas.toDataURL();
+			}
+			
+		});
+		
+		
+		// FADE SLIDER
+		$(".effectContainer").fadeTransition({
+			pauseTime: 10000,
+			transitionTime: 2000,
+			delayStart: 10000,
+			pauseOnMouseOver: false,
+			createNavButtons: false});
+			
+			
+		<!--STAR LIGHTBOX -->
+		var medioPantalla = $(window).height() * 0.5;
+		
+		$('.imgLightBox').click(function(e){
+			<!-- condicional-->
+			if($(e.currentTarget).attr('tumbBig') !== ""){
+				<!-- seteo la base del lightbox -->
+				$('#lightBoxBack').css('top', 0);
+				$('#lightBoxBack').css('width', $(window).width());
+				$('#lightBoxBack').css('height', $(document).height());
+				$('#lightBoxBack').css('overflow', 'hidden');
+				
+				$('#lightBoxBack').click(function(e){
+					$('#lightBoxBack').css('width', 1);
+					$('#lightBoxBack').css('height', 1);
+					
+					$('#imagenLightBox').css('visibility', 'hidden');
+					$('#imagenLightBox').css('top', -700);
+					$('#imagenLightBox').css('margin-top',  0)
+					
+				});
+				<!-- muestro el div imagenLightBox-->
+				var imagetoLoad = $(e.currentTarget).attr('tumbBig');
+				
+
+				var objImagePreloader = new Image();
+				objImagePreloader.onload = function() {
+					
+					<!-- muestro el div imagenLightBox-->
+					$('#imagenLightBox > img')
+						.removeAttr('src')
+						.attr('src',imagetoLoad);
+					
+					$('#imagenLightBox').css('visibility', 'visible');
+					
+					var picLightW = $('#imagenLightBox > img').width();
+					$('#imagenLightBox > a').css('left', 0);
+					$('#imagenLightBox > a').css('margin-left', picLightW + 8); 
+					$('#imagenLightBox').css('left', '50%');
+					$('#imagenLightBox').css('margin-left', (picLightW * 0.5) * -1);
+					
+					var picLightH = $('#imagenLightBox > img').height();
+					$('#imagenLightBox > a').css('top', 0); 
+					$('#imagenLightBox > a').css('margin-top', 10); 
+					$("#imagenLightBox").animate({'top': medioPantalla + $(window).scrollTop(),'margin-top': (picLightH * 0.5) * -1},'slow','swing');
+					/*alert('ancho ' + $('#imagenLightBox > img').width());*/
+				}
+				objImagePreloader.src = imagetoLoad;
+				return false;
+			}else{
+				$('#lightBoxBack').css('width', 1);
+				$('#lightBoxBack').css('height', 1);
+				$('#imagenLightBox').css('visibility', 'hidden');
+				$('#imagenLightBox').css('top', -700);
+				$('#imagenLightBox').css('margin-top',  0)
+			}
+			<!-- llave cierra condicional-->
+		});
+		
+		$('#imagenLightBox > a').click(function(e){
+			$('#lightBoxBack').css('width', 1);
+			$('#lightBoxBack').css('height', 1);
+			$('#imagenLightBox').css('visibility', 'hidden');
+			$('#imagenLightBox').css('top', -700);
+			$('#imagenLightBox').css('margin-top',  0);
+			return false
+		});
+		<!--END STAR LIGHTBOX -->
+
+});
+	
+
+
+</script>
+
+<!------ PIXEL CONVERSION PARA FACEBOOK ----------------->
+<style>
+ 
+  .fb-page, .fb-page:before, .fb-page:after {
+    border: 1px solid #ccc;
+  }
+ 
+  .fb-page:before, .fb-page:after {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 2px;
+    right: 2px;
+    height: 1px;
+    border-top: none
+  }
+  
+  .fb-page:after {
+    left: 4px;
+    right: 4px;
+    bottom: -5px;
+    box-shadow: 0 0 2px #ccc
+  }
+</style>
+ 
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.4";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+<!-------- FIN SCRIPT PIXEL CONVERSION PARA FACEBOOK ------->
+
+</head>
+
+
+<body>
+<!-- ESTADISTIDAS GOOGLE ANALYTICS --> 
+<?php include_once("http://culturademontania.org.ar/analyticstracking.php") ?>
+<!-- FIN ESTADISTIDAS GOOGLE ANALYTICS -->
+
+<!-- ================= -->
+<!-- Light Box -->
+<div id="imagenLightBox">
+    <img src="">
+    <a>Cerrar</a>
+</div>
+<div id="lightBoxBack"></div>
+<!-- Light Box -->
+<!-- ================= -->
+
+	<!-- DIV CONTENEDOR --> 
+	<!-- ================== -->
+  <div id="contPage">
+    
+    	<!-- HEADER --> 
+		<!-- ================== -->
+    <header id="indexHeader">
+        
+        	<!-- HEADER IZQUIERDO --> 
+			<!-- ================== -->
+        	<div id="headerIzq">
+
+            	<!-- CONTENEDOR LOGO --> 
+				<!-- ================== -->
+            	<div id="contLogoHeader">
+                  <img src="http://www.culturademontania.org.ar/templates/tmpl_culturademontania/images/header-object-RDM.png" alt="Centro Cultural Agentino de Montaña">
+                </div>
+                <!-- FIN CONTENEDOR LOGO --> 
+				<!-- ================== -->
+                
+                <!-- CONTENEDOR TITULO --> 
+				<!-- ================== -->
+                <!--<div id="contTitulo">
+                	<ul>
+                    	<li>
+                			<h1>CENTRO CULTURAL ARGENTINO de MONTAÑA</h1>
+                        </li>
+                        <li>
+                    		<span>POR UNA CULTURA DE MONTAÑA ARGENTINA.</span>
+                      </li>
+                        <li></li>
+                    </ul>
+                </div>
+                -->
+                
+                <!-- FIN CONTENEDOR TITULO --> 
+				<!-- ================== -->
+            </div>
+            
+            <!-- FIN HEADER IZQUIERDO --> 
+			<!-- ================== -->
+            
+            
+            <!--HEADER DERECHO --> 
+			<!-- ================== -->
+            <div id="headerDer">
+            	<!--FECHA PUBLICACIÓN DIGITAL --> 
+				<!-- ================== -->
+            	<div id="fechaIndex">
+                	<span>Revista Digital de Montaña Nro 54 - Marzo 2017</span>
+                </div>
+                             
+				<!-- BUSCADOR -->
+				<div class="custom-gs">        
+				  <script src='//www.google.com/jsapi' type='text/javascript'></script>
+				  <script src="/templates/tmpl_culturademontania/scripts/searchbox_buscador.js" type="text/javascript"></script>
+					<!-- Contenedor del Buscador -->
+					<link rel="stylesheet" type="text/css" href="http://culturademontania.org.ar/templates/tmpl_culturademontania/css/googlesearch.css"/>
+					<div id='cse-search-form' style="width: 25%;"></div>                         
+				</div>
+				<!-- FIN BUSCADOR -->
+
+                <!--TRADUCTOR GOOGLE -->
+                <div class="custom-gt"  >
+				<div id="google_translate_element"></div><script type="text/javascript">
+				function googleTranslateElementInit() {
+				  new google.translate.TranslateElement({pageLanguage: 'es', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false}, 			'google_translate_element');
+				}
+				</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>             
+                </div>
+                <!--FIN TRADUCTOR GOOGLE --> 
+                           
+                <!--FIN FECHA PUBLICACIÓN DIGITAL --> 
+				<!-- ================== -->
+                
+                <!-- SHARED --> 
+				<!-- ================== 
+                <div id="contShared">
+                	<span>Shared</span>
+                    <span class='st_facebook' st_title='Centro Cultural Argentino de Montaña' st_url='http://www.culturademontania.org.ar' st_image='http://www.culturademontania.org.ar/images/tumb.jpg'></span>
+					<span class='st_twitter' st_title='Centro Cultural Argentino de Montaña' st_url='http://www.culturademontania.org.ar' st_image='http://www.culturademontania.org.ar/images/tumb.jpg'></span>
+                    <span class='st_linkedin' st_title='Centro Cultural Argentino de Montaña' st_url='http://www.culturademontania.org.ar' st_image='http://www.culturademontania.org.ar/images/tumb.jpg'></span>
+                    <span class='st_googleplus' st_title='Centro Cultural Argentino de Montaña' st_url='http://www.culturademontania.org.ar' st_image='http://www.culturademontania.org.ar/images/tumb.jpg'></span>
+                    <span class='st_sharethis' st_title='Centro Cultural Argentino de Montaña' st_url='http://www.culturademontania.org.ar' st_image='http://www.culturademontania.org.ar/images/tumb.jpg'></span>
+                </div>
+                <!-- FIN SHARED --> 
+				<!-- ================== -->
+            </div>
+			<!-- FIN HEADER DERECHO --> 
+			<!-- ================== -->
+        </header>
+        <!-- FIN HEADER --> 
+		<!-- ================== -->
+        
+        
+        <!-- ** -->
+        <!-- ** -->
+         
+        <!--SLIDER --> 
+		<!-- ================== -->
+        <div id="sliderIndex">
+			<!-- Listado NEWS -->
+          <ul id="listadoNews">
+            	<li id="listNews_0" noticia='#news_0'>
+                	<h2><span class="titleCont">
+                	  <h10>
+                	    <h10>
+                	      <h10>
+                	        <h10>
+                	          <h10>
+                	            <h10>Los invitamos a participar de la red Cultural</h10>
+                	          </h10>
+                	        </h10></h10></h10></h10></span></h2>
+                    <div id="backColorNew_0" class="backColorListNews"></div>
+                    <div class="backListaNews"></div>
+                    <div class="arrowListNews"><img src="../../images/img_arrowNews.jpg" alt="Noticia Seleccionada"></div>
+            </li>
+                <li id="listNews_1" noticia='#news_1'>
+                	<h2><span class="titleCont">
+               	    <h10>
+               	      <h10>
+               	        <h10>
+               	          <h10>
+               	            <h10>
+               	              <h10>
+               	                <h10></h10>
+               	                <h10>Primera ascensión al Nevado de Guanacos</h10>
+               	              </h10></h10></h10></h10></h10></h10></span></h2>
+                    <div id="backColorNew_1" class="backColorListNews"></div>
+                    <div class="backListaNews"></div>
+                    <div class="arrowListNews"><img src="../../images/img_arrowNews.jpg" alt="Noticia Seleccionada"></div>
+                </li>
+                <li id="listNews_2" noticia='#news_2'>
+                	<h2><span class="titleCont">
+               	    <h10>
+               	      <h10>
+               	        <h10>
+               	          <h10>Descubriendo la zona del Volcán Veladero</h10>
+               	        </h10>
+               	      </h10>
+               	    </h10></span></h2>
+                    <div id="backColorNew_2" class="backColorListNews"></div>
+                    <div class="backListaNews"></div>
+                    <div class="arrowListNews"><img src="../../images/img_arrowNews.jpg" alt="Noticia Seleccionada"></div>
+              </li>
+                <li id="listNews_3" noticia='#news_3'>
+                	<h2><span class="titleCont">
+                	  <h10>
+                	    <h10>
+                	      <h10>
+                	        <h10>
+                	          <h10>
+                	            <h10>
+                	              <h10>Santuarios de Altura en América y el mundo</h10>
+                	            </h10></h10></h10></h10></h10></h10></span></h2>
+                    <div id="backColorNew_3" class="backColorListNews"></div>
+                    <div class="backListaNews"></div>
+                    <div class="arrowListNews"><img src="../../images/img_arrowNews.jpg" alt="Noticia Seleccionada"></div>
+                </li>
+                <li id="listNews_4" noticia='#news_4'>
+                	<h2><span class="titleCont">
+                	  <h10>
+                	    <h10>
+                	      <h10>
+                	        <h10>
+                	          <h10>
+                	            <h10>
+                	              <h10>
+                	                <h10>
+                	                  <h10>Historia del Cementerio del Aconcagua</h10>
+              	                  </h10>
+              	                </h10>
+              	              </h10>
+              	            </h10>
+              	          </h10>
+              	        </h10>
+                        </h10>
+                	  </h10>
+                	</span></h2>
+                    <div id="backColorNew_4" class="backColorListNews"></div>
+                    <div class="backListaNews"></div>
+                    <div class="arrowListNews"><img src="../../images/img_arrowNews.jpg" alt="Noticia Seleccionada"></div>
+                </li>
+                <li id="listNews_5" noticia='#news_5'>
+                	<h2><span class="titleCont">
+               	    <h10>
+               	      <h10>
+               	        <h10>
+               	          <h10>
+               	            <h10></h10>
+               	          </h10></h10></h10></h10></span><span class="titleCont">
+               	          <h10>
+               	            <h10>
+               	              <h10>Mujeres valerosas en el Himalaya</h10>
+           	                </h10>
+           	              </h10>
+               	          </span></h2>
+                    <div id="backColorNew_5" class="backColorListNews"></div>
+                    <div class="backListaNews"></div>
+                    <div class="arrowListNews"><img src="../../images/img_arrowNews.jpg" alt="Noticia Seleccionada"></div>
+            </li>
+                <li id="listNews_6" noticia='#news_6'>
+                	<h2><span class="titleCont">
+                	  <h10>
+                	    <h10>
+                	      <h10>
+                	        <h10>
+                	          <h10></h10>
+                	        </h10>
+                	      </h10>
+                	    </h10>
+                	  </h10>
+               	    <h10>
+                	    <h10>
+                	      <h10>
+                	        <h10>
+                	          <h10>primera ascensión solitaria al Everest en 1980</h10>
+                	        </h10>
+                	      </h10></h10></h10></span></h2>
+                    <div id="backColorNew_6" class="backColorListNews"></div>
+                    <div class="backListaNews"></div>
+                    <div class="arrowListNews"><img src="../../images/img_arrowNews.jpg" alt="Noticia Seleccionada"></div>
+                </li>
+                <li id="listNews_7" noticia='#news_7'>
+                	<h2><span class="titleCont">
+                	  <h10>
+                	    <h10>
+                	      <h10>
+                	        <h10>Biografía del Coronel Emiliano Huerta</h10>
+                	      </h10>
+                	    </h10></h10></span></h2>
+                    <div id="backColorNew_7" class="backColorListNews"></div>
+                    <div class="backListaNews"></div>
+                    <div class="arrowListNews"><img src="../../images/img_arrowNews.jpg" alt="Noticia Seleccionada"></div>
+                </li>
+          </ul>
+            <!-- FIN Listado NEWS --> 
+            
+            <!-- PICTURES NEWS -->
+<ul id="picturesNews">
+            	<li id="news_0">
+                  <p class="textoCorridoImport">La oportunidad de conocernos y compartir nuestra Cultura de Montaña<br>
+                  <span class="textoCorridoItalic">CCAM, Centro Cultural Argentino de Montaña</span></p>
+                    
+                  <a href="http://www.culturademontania.org.ar/Noticias/invitacion-participar-red-cultural-ccam.html" target="_blank" title="Ampliar Noticia" class="btAmpliarNews">Ampliar Nota</a>
+                	<div class="backInfoNews"></div>
+                    <div class="imgNews"><img src="/images/mendoza_cordon_plata_2016_ccam_02.jpg"></div>
+                </li>
+                
+                <li id="news_1">
+                  <p class="textoCorridoImport">Se cumplen 35 años de la ascensión en 1982, de aquella expedición en busca de un sueño y una aventura a un lugar desconocido en la provincia de Salta<br>
+                  <span class="textoCorridoItalic">Christian Vitry, Montañista y Antropólogo</span></p>
+                    
+                  <a href="http://www.culturademontania.org.ar/Historia/35-anios-primra-ascension-nevadoguanacos-salta.html" target="_blank" title="Ampliar Noticia" class="btAmpliarNews">Ampliar Nota</a>
+                	<div class="backInfoNews"></div>
+                    <div class="imgNews"><img src="/images/salta_nevado_los_guanacos_02.jpg"></div>
+                </li>
+                
+                <li id="news_2">
+                  <p class="textoCorridoImport">La Sierra del Veladero, supera los 30 kilómetros de largo, se encuentra en la provincia de la Rioja en Argentina, a unos 27 km. del límite fronterizo con Chile<br>
+                    <span class="textoCorridoItalic">Jorge E. Gonzalez y Enrique Bolsi</span></p>
+                  <a href="http://www.culturademontania.org.ar/Relatos/expedicion-volcan-veladero-la-rioja.htm" target="_blank" title="Ampliar Noticia" class="btAmpliarNews">Ampliar Nota</a>
+                	<div class="backInfoNews"></div>
+                    <div class="imgNews"><img src="../../images/la_rioja_volcan_veladero_cumbre_02.jpg"></div>
+                </li>
+                
+                <li id="news_3">
+                    <p class="textoCorridoImport">El interés de andinistas y arqueólogos de Argentina y Chile sobre las más antiguas ascensiones que se conocen<br>
+                      <span class="textoCorridoItalic">Evelio Echevarría</span></p>
+                  <a href="http://www.culturademontania.org.ar/Arqueologia/arqueologia-de-cumbres.html" target="_blank" title="Ampliar Noticia" class="btAmpliarNews">Ampliar Nota</a>
+                	<div class="backInfoNews"></div>
+                    <div class="imgNews"><img src="../../images/salta_llullaillaco_jaqueline_waltz_02.jpg"></div>
+                 </li>
+                
+                <li id="news_4">
+                  <p class="textoCorridoImport">Primero fue el cementerio ferroviario y a partir de 1929, con la muerte del británico Basil Marden, comenzó su historia como el Cementerio del Andinista<br>
+                    <span class="textoCorridoItalic">Guillermo Martin</span></p>
+                  <a href="http://www.culturademontania.org.ar/Relatos/cementerio-aconcagua-mendoza.html" target="_blank" title="Ampliar Noticia" class="btAmpliarNews">Ampliar Nota</a>
+               	  <div class="backInfoNews"></div>
+                    <div class="imgNews"><img src="/images/mendoza_cementerio_andinista_aconcagua_02.jpg"></div>
+                </li>
+
+                <li id="news_5">
+                  <p class="textoCorridoImport">Viajeras, Exploradoras y Montañistas, estas protagonistas femeninas, nos enseñan con su valor y decisión, que la aventura también les pertenece<br>
+                  <span class="textoCorridoItalic">Marcelo Espejo y Alicia Pacheco</span></p>
+                  <a href="http://www.culturademontania.org.ar/Historia/mujeres-valerosas-del-himalaya.html" target="_blank" title="Ampliar Noticia" class="btAmpliarNews">Ampliar Nota</a>
+                	<div class="backInfoNews"></div>
+                    <div class="imgNews"><img src="../../images/mujer_himalaya_junko_tabei_02.jpg"></div>
+                </li>                
+                
+                <li id="news_6">
+                  <p class="textoCorridoImport">Reinhold Messner tuvo un sueño, escalar el Everest en solitario en una estación climatológica nunca intentada anteriormente, el verano, en pleno período monzónico<br><span class="textoCorridoItalic">Marcelo Lisnovsky</span></p>
+                  <a href="http://www.culturademontania.org.ar/Historia/primera-ascension-solitario-everest.html" target="_blank" title="Ampliar Noticia" class="btAmpliarNews">Ampliar Nota</a>
+                	<div class="backInfoNews"></div>
+                    <div class="imgNews"><img src="/images/everest_reinhold_messner_cumbre_02.jpg" width="632" height="399"></div>
+                </li>
+                
+                <li id="news_7">
+                  <p class="textoCorridoImport">Militar, ingeniero, explorador y director fundador del Instituto del Hielo Continental Patagónico, un gran inspirador del andinismo argentino<br>
+                      <span class="textoCorridoItalic">José Herminio Hernández</span></p>
+                  <a href="http://www.culturademontania.org.ar/Historia/biografia-coronel-emiliano-huerta.html" target="_blank" title="Ampliar Noticia" class="btAmpliarNews">Ampliar Nota</a>
+                	<div class="backInfoNews"></div>
+                    <div class="imgNews"><img src="/images/emiliano_huerta_mario_bertone_02.jpg"></div>
+                </li>
+                
+          </ul>
+            <!-- FIN PICTURES NEWS -->
+</div>
+        <!-- FIN SLIDER --> 
+		<!-- ================== -->
+        
+        <!-- ** -->
+        <!-- ** -->
+        <!-- ** -->
+        <!-- ** -->
+        <!-- ** -->
+        <!-- ** -->
+        
+        <!--CONTENEDOR PAGE --> 
+		<!-- ================== -->
+      <div id="contSectionAside">
+        
+            <!-- ** -->
+            <!-- ** -->
+            <!-- ** -->
+            <!--SECTION--> 
+			<!-- ================== -->
+        	<section id="sectionIndex">
+            
+            	<!--ARTICLE EDITORIAL--> 
+				<!-- ================== -->
+                <article class="cont_650px">
+            		<!--DIV TITLE--> 
+					<!-- ================== -->
+            		<div class="titleCont_650px"><h1 class="titlePrincipal">Editorial</h1></div>
+                	<!--FIN DIV TITLE--> 
+					<!-- ================== -->
+                
+                	<!--DIV IMAGEN EDITORIAL--> 
+					<!-- ================== -->
+                	<div id="contImgText">
+                		<div class="contImg">
+               			  <img src="/images/img-fotoEditor.jpg" alt="Foto Editor Guillermo Martin">
+                		</div>
+                		<p><span class="textoCorrido">Guillermo Martin</span><br>
+                    	<span class="textoCorridoItalic">Director del CCAM</span></p>
+                	</div>
+             	<!--FIN DIV IMAGEN EDITORIAL--> 
+					<!-- ================== -->
+                
+                	<!--DIV TEXTO EDITORIAL--> 
+					<!-- ================== -->
+               	  <div id="textEdit">
+               		  <p class="textoParrafo" style="font-size: 12px">Comenzamos el 2017 con la publicación de este número 54 de la <strong>Revista Digital de Montaña</strong> que desde hace 9 años editamos, con el propósito de poner en valor nuestra Cultura.</p>
+           		    <p class="textoParrafo" style="font-size: 7px">&nbsp;  </p>
+           		    <p class="textoParrafo" style="font-size: 12px">En el transcurso de este tiempo, en varias oportunidades, nos han sugerido que la imprimamos también en la forma tradicional. Y nuestra respuesta fue y es que elegimos realizarla en forma digital, porque de esa manera actuamos siendo amables con los recursos de nuestra tierra, protegiendo así el medio ambiente y nuestra Cultura de Montaña.</p>
+           		    <p class="textoParrafo" style="font-size: 12px">&nbsp;</p>
+           		    <p class="textoParrafo" style="font-size: 12px">Los invitamos a participar de la red cultural de montaña y que nos contacten a <a href="mailto:info@culturademontania.org.ar" target="_blank">info@culturademontania.org.ar</a> compartiendo con nosotros y con nuestros lectores, proyectos, aventuras y experiencias.<br>
+           		    </p>
+                  </div>
+               	  <!--FIN DIV TEXTO EDITORIAL--> 
+					<!-- ================== -->
+                    
+                  <div class="cleaner"></div>
+                    
+            	</article>
+                <!--FIN ARTICLE EDITORIAL--> 
+				<!-- ================== -->
+                
+                
+                
+                <!-- ARTICLE CON NOTICIAS --> 
+				<!-- ================== -->
+                <div class="cont_650px">
+                	<!--DIV TITLE--> 
+					<!-- ================== -->
+            		<div class="titleCont_650px">
+                    	<h1 class="titlePrincipal">Departamento de Noticias de Montaña</h1>
+                	</div>
+                	<!--FIN DIV TITLE--> 
+					<!-- ================== -->
+                    
+                    <!--DIV NOTICIAS--> 
+					<!-- ================== -->
+                    	<ul id="contNoticiasIndex">
+                        	<!-- NOTICIA 1--> 
+							<!-- ================== -->
+                       	  <li href="http://www.culturademontania.org.ar/Noticias/dos-accidentes-mortales-vallecitos-mendoza.html">
+                            <img src="/images/mendoza_vallecitos_refugio_mausy_0.jpg" width="200" height="130" class="fadegray">
+                            <img src="/images/img-sombraTumb.png" alt="Sombra Tumb"  class="shadTumbNewsIndex">
+<p><span class="titleCont">
+                              <h10>Ya van 2 accidentes mortales en la temporada en Vallecitos</h10>
+</span></p>
+                          </li>
+                            <!-- FIN NOTICIA 1--> 
+							<!-- ================== -->  
+                                                 
+                       	  <!-- NOTICIA 2--> 
+							<!-- ================== -->
+                       	  <li href="http://www.culturademontania.org.ar/Noticias/esqui-travesia-monte-tronador.html">
+                            <img src="/images/rio_negro_bariloche_tronador_esqui_travesia_0.jpg" width="200" height="130" class="fadegray">
+                            <img src="/images/img-sombraTumb.png" alt="Sombra Tumb"  class="shadTumbNewsIndex">
+<p><span class="titleCont">
+                              <h10>Esquí de travesía en el <br>
+                              monte Tronador</h10>
+</span></p>
+                          </li>
+                            <!-- FIN NOTICIA 2--> 
+							<!-- ================== -->
+                                                    
+                       	  <!-- NOTICIA 3--> 
+							<!-- ================== -->
+                       	  <li href="http://www.culturademontania.org.ar/Noticias/ascenso_volcan_elbrus_rusia.html">
+                            <img src="/images/rusia_elbrus_cumbre_0.jpg" width="200" height="130" class="fadegray">
+                            <img src="/images/img-sombraTumb.png" alt="Sombra Tumb"  class="shadTumbNewsIndex">
+<p><span class="titleCont">
+                              <h10>Ascendiendo en Rusia <br>el volcán Elbrus</h10>
+</span></p>
+                          </li>
+                            <!-- FIN NOTICIA 3--> 
+							<!-- ================== -->
+                                                    
+                       	  <!-- NOTICIA 4--> 
+							<!-- ================== -->
+                       	  <li href="http://www.culturademontania.org.ar/Noticias/reclamo-habitantes-alta-montana.html">
+                            <img src="/images/mendoza_reclamo_habitantes_alta_montana_0.jpg" width="200" height="130" class="fadegray">
+                            <img src="/images/img-sombraTumb.png" alt="Sombra Tumb"  class="shadTumbNewsIndex">
+<p><span class="titleCont">
+                              <h10>Reclamo de los habitantes de Alta Montaña en Mendoza</h10>
+</span></p>
+                          </li>
+                            <!-- FIN NOTICIA 4--> 
+							<!-- ================== -->
+                                                    
+                       	  <!-- NOTICIA 5--> 
+							<!-- ================== -->
+                       	  <li href="http://www.culturademontania.org.ar/Noticias/dos-accidentes-volcan-lanin.html">
+                            <img src="/images/neuquen_lanin_rescate_escaladores_0.jpg" width="200" height="130" class="fadegray">
+                            <img src="/images/img-sombraTumb.png" alt="Sombra Tumb"  class="shadTumbNewsIndex">
+<p><span class="titleCont">
+                              <h10>Se realizaron dos importantes rescates en el Volcán Lanín</h10>
+</span></p>
+                          </li>
+                            <!-- FIN NOTICIA 5--> 
+							<!-- ================== -->                          
+                                                       
+                       	  <!-- NOTICIA 6--> 
+							<!-- ================== -->
+                       	  <li href="http://www.culturademontania.org.ar/Noticias/nuevo-parque-nacional-aconquija-tucuman.html">
+                            <img src="/images/tucuman_catamarca_aconquija_cerro_bolson_0.jpg" width="200" height="130" class="fadegray">
+                            <img src="/images/img-sombraTumb.png" alt="Sombra Tumb"  class="shadTumbNewsIndex">
+<p><span class="titleCont">
+                              <h10>Se creará en Tucumán el Parque Nacional Aconquija</h10>
+</span></p>
+                          </li>
+                            <!-- FIN NOTICIA 6--> 
+							<!-- ================== -->
+                            
+                       	  <!-- NOTICIA 7--> 
+							<!-- ================== -->
+                       	  <li href="http://www.culturademontania.org.ar/Noticias/exito-presentacion-en-salta-red-integracion-cultural-ccam.html">
+                            <img src="/images/salta_presentacion_ccam_casa_cutlura_0.jpg" width="200" height="130" class="fadegray">
+                            <img src="/images/img-sombraTumb.png" alt="Sombra Tumb"  class="shadTumbNewsIndex">
+<p><span class="titleCont">
+                              <h10>Exitosa presentación en Salta de la red de Integración Cultural</h10>
+</span></p>
+                          </li>
+                            <!-- FIN NOTICIA 7--> 
+							<!-- ================== -->                           
+                                                       
+                       	  <!-- NOTICIA 8--> 
+							<!-- ================== -->
+                       	  <li href="http://www.culturademontania.org.ar/Noticias/presentacion-reserva-natural-rio-pintos.html">
+                            <img src="/images/cordoba_reserva_natural_rio_pintos_0.jpg" width="200" height="130" class="fadegray">
+                            <img src="/images/img-sombraTumb.png" alt="Sombra Tumb"  class="shadTumbNewsIndex">
+<p><span class="titleCont">
+                              <h10>Se presentó el Proyecto de la Reserva Natural Rio Pintos</h10>
+</span></p>
+                          </li>
+                            <!-- FIN NOTICIA 8--> 
+							<!-- ================== -->
+                            
+                       	  <!-- NOTICIA 9--> 
+							<!-- ================== -->
+                       	  <li href="http://www.culturademontania.org.ar/Noticias/volcan-lanin-donde-se-perdio-la-aventura.html">
+                            <img src="/images/neuquen_lanin_cumbre_0.jpg" width="200" height="130" class="fadegray">
+                            <img src="/images/img-sombraTumb.png" alt="Sombra Tumb"  class="shadTumbNewsIndex">
+<p><span class="titleCont">
+                              <h10>El volcán Lanin, donde <br>
+              se perdió la aventura...</h10>
+</span></p>
+                          </li>
+                            <!-- FIN NOTICIA 9--> 
+							<!-- ================== --> 
+                            
+                       	  <!-- NOTICIA 10--> 
+							<!-- ================== -->
+                       	  <li href="http://www.culturademontania.org.ar/Noticias/12-horas-incertidumbre-cara-este-cerro-vallecitos.html">
+                            <img src="/images/mendoza_cerro_vallecitos_cara_este_0.jpg" width="200" height="130" class="fadegray">
+                            <img src="/images/img-sombraTumb.png" alt="Sombra Tumb"  class="shadTumbNewsIndex">
+<p><span class="titleCont">
+                              <h10>12 horas de incertidumbre en la cara este del Cerro Vallecitos</h10>
+</span></p>
+                          </li>
+                            <!-- FIN NOTICIA 10--> 
+							<!-- ================== -->
+                            
+                       	  <!-- NOTICIA 11--> 
+							<!-- ================== -->
+                       	  <li href="http://www.culturademontania.org.ar/Noticias/ayuda-solidaria-mariano-lynch.html">
+                            <img src="/images/mariano_lynch_montanista_0.jpg" width="200" height="130" class="fadegray">
+                            <img src="/images/img-sombraTumb.png" alt="Sombra Tumb"  class="shadTumbNewsIndex">
+<p><span class="titleCont">
+                              <h10>Ayuda solidaria a Mariano Lynch</h10>
+</span></p>
+                          </li>
+                            <!-- FIN NOTICIA 11--> 
+							<!-- ================== -->
+                            
+                       	  <!-- NOTICIA 12--> 
+							<!-- ================== -->
+                       	  <li href="http://www.culturademontania.org.ar/Noticias/quieren-destruir-valle-laguna-verde-catamarca.html">
+                            <img src="/images/catamarca_volcan_tres_quebradas_0.jpg" width="200" height="130" class="fadegray">
+                            <img src="/images/img-sombraTumb.png" alt="Sombra Tumb"  class="shadTumbNewsIndex">
+<p><span class="titleCont">
+                              <h10>Quieren destruir el Valle de la Laguna Verde en la <br>
+              Provincia de Catamarca</h10>
+</span></p>
+                          </li>
+                            <!-- FIN NOTICIA 12--> 
+							<!-- ================== -->
+                        
+                       	  <!-- NOTICIA 13--> 
+							<!-- ================== -->
+                       	  <li href="http://www.culturademontania.org.ar/Noticias/ascenso-cerro-tolosa-gram.html">
+                            <img src="/images/mendoza-cerro-tolosa-gram_0.jpg" width="200" height="130" class="fadegray">
+                            <img src="/images/img-sombraTumb.png" alt="Sombra Tumb"  class="shadTumbNewsIndex">
+<p><span class="titleCont">
+                              <h10>Ascenso al Cerro Tolosa por la ruta del pata larga del glaciar del hombre cojo</h10>
+</span></p>
+                          </li>
+                            <!-- FIN NOTICIA 13--> 
+							<!-- ================== -->                                                      
+                        
+                       	  <!-- NOTICIA 14--> 
+							<!-- ================== -->
+                       	  <li href="http://www.culturademontania.org.ar/Noticias/curso-nacional-guias-trekking-aagm.html">
+                            <img src="/images/curso_aagm_guias_trekking_mendoza_0.jpg" width="200" height="130" class="fadegray">
+                            <img src="/images/img-sombraTumb.png" alt="Sombra Tumb"  class="shadTumbNewsIndex">
+<p><span class="titleCont">
+                              <h10>Se realizó en Mendoza el Curso Nacional de Guías de Trekking</h10>
+</span></p>
+                          </li>
+                            <!-- FIN NOTICIA 14--> 
+							<!-- ================== -->  
+                            
+                       	  <!-- NOTICIA 15--> 
+							<!-- ================== -->
+                       	  <li href="http://www.culturademontania.org.ar/Noticias/exitosa-jornada-turismo-y-sostenibilidad-unesco.html">
+                            <img src="/images/jornada_turismo_sostenibilidad_buenos_aires_ccam_0.jpg" width="200" height="130" class="fadegray">
+                            <img src="/images/img-sombraTumb.png" alt="Sombra Tumb"  class="shadTumbNewsIndex">
+<p><span class="titleCont">
+                              <h10>Fue exitosa la jornada de Turismo y Sostenibilidad de la Cátedra Unesco</h10>
+</span></p>
+                          </li>
+                            <!-- FIN NOTICIA 15--> 
+							<!-- ================== -->
+                  </ul>
+                    <!--FIN DIV NOTICIAS--> 
+					<!-- ================== -->
+                    
+                  <div class="cleaner"></div>
+                    
+                </div>
+                <!--FIN ARTICLE CON NOTICIAS--> 
+				<!-- ================== -->
+                
+                
+
+                <!--ARTICLES--> 
+				<!-- ================== -->
+                <div class="cont_650px">
+                    <!--VIDEO DEL MES IZQUIEDO--> 
+					<!-- ================== -->
+                	<article class="cont_315px_article" style="margin:0 20px 0 0;">
+                    	
+                        <!--TITLE VIDEO DEL MES--> 
+						<!-- ================== -->
+                    	<div class="titleCont_315px">
+                        	<h1 class="titlePrincipal">Libros Elegidos</h1>
+                        </div>
+                <p style="font-size: medium">&nbsp;</p>
+                <table width="315" border="0" cellspacing="0" cellpadding="0">
+				          <tr>
+				            <td width="208"><span class="titleSecundario"><img src="/images/desde_volcan_tapa_01.jpg" alt="Libro del mes" width="200" height="248" usemap="#Map2" border="0"></span></td>
+				            <td width="107"><span class="titleSecundario"><span class="titleCont">
+			                <h10>Desde el Volcán. Historia del Club Andino Junín de los Andes
+			                </h10></span><br>
+			                <br>
+			                Autor: Alberto Manuel González<br>
+                            Primera Edición, Octubre de 2007
+				            </span></td>
+	              </tr>
+	            </table>
+                        
+                        <!--BOTON VER MAS--> 
+						<!-- ================== -->
+                      <a href="/Libros/desde-el-volcan.html" target="_blank" title="Continuar leyendo" class="botonAmpliar">Continuar Leyendo</a>
+                        <!--FIN BOTON VER MAS--> 
+						<!-- ================== -->
+                    </article>
+                    <!--FIN VIDEO DEL MES IZQUIEDO--> 
+					<!-- ================== -->
+                    
+                    
+                    <!--LIBRO DEL MES DERECHO--> 
+					<!-- ================== -->
+              <article class="cont_315px_article">
+                    	<!--TITLE LIBRO DEL MES--> 
+						<!-- ================== -->
+                        <div class="titleCont_315px">
+                        	<!--<h1 class="titlePrincipal">Libro del Mes</h1>-->
+                        </div>
+                <p style="font-size: medium">&nbsp;</p>
+                <table width="315" border="0" cellspacing="0" cellpadding="0">
+				          <tr>
+				            <td width="208"><span class="titleSecundario"><img src="/images/entre_nieves_y_huacas_tapa_01.jpg" alt="Libro del mes" width="200" height="248" border="0" usemap="#Map4"></span></td>
+				            <td width="107"><span class="titleSecundario"><span class="titleCont">
+			                <h10>Entre nieves y huacas. A 50 años del hallazgo de la momia del Nevado El Toro
+			                </h10></span><br>
+			                <br>
+                            Autores: Antonio Beorchia Nigris y Christian Vitry<br>
+			                Primera Edición, Septiembre de 2016
+			                <br>
+				            </span></td>
+	              </tr>
+	            </table>
+
+				  <!--BOTON VER MAS--> 
+				  <!-- ================== -->
+                  <a href="http://www.culturademontania.org.ar/Libros/entre-nieves-y-huacas.html" target="_blank" title="Continuar leyendo" class="botonAmpliar">Continuar leyendo</a>
+                  <!--FIN BOTON VER MAS-->
+                  <!-- ================== -->
+
+              </article>
+                    <!--FIN LIBRO DEL MES DERECHO--> 
+					<!-- ================== -->
+                    
+                    
+                    <!--HUMOR IZQUIEDO--> 
+					<!-- ================== -->
+<article class="cont_315px_article" style="margin:0 20px 0 0;">
+                    	
+                        <!--TITLE VIDEO DEL MES--> 
+						<!-- ================== -->
+                    	<div class="titleCont_315px">
+                        	<h1 class="titlePrincipal">Descargá la Aplicación del CCAM</h1>
+                            <span style="font-size: 10px">&nbsp;</span><br>
+                            <a href="http://www.appsgeyser.com/getwidget/CCAM/" target="_blank"><img src="/images/banners/qrcode.jpg" width="314" height="405" tumbBig="/Destacados/Aplicacion_Revista_Digital_CCAM2_INI.jpg" class="imgLightBox"></a>
+                        </div>
+                        
+                  </article>
+                    <!--FIN HUMOR IZQUIEDO--> 
+					<!-- ================== -->
+                    
+                    
+                    <!--FACEBOOK DERECHO--> 
+					<!-- ================== -->
+                    <article class="cont_315px_article">
+                    	<!--TITLE REVISTA ANTERIOR--> 
+						<!-- ================== -->
+                    	<div class="titleCont_315px">
+                        	<h1 class="titlePrincipal">Revista Digital de Montaña Nro. 53</h1>
+                            <span style="font-size: 10px">&nbsp;</span><br>
+                          <a href="http://culturademontania.org.ar/Revista_Digital/07_2016/julio_2016.htm" target="_blank"><img src="/images/banners/Tapa_Revista_53.jpg" width="314" height="405"></a>
+                        </div>                        
+                        <!--FIN REVISTA ANTERIOR--> 
+						<!-- ================== -->
+                    </article>
+                    <!--FIN FACEBOOK DERECHO--> 
+					<!-- ================== -->
+                    
+                    <div class="cleaner"></div>
+                
+                </div>
+                <!--FIN ARTICLES--> 
+				<!-- ================== -->
+            
+            </section>
+            <!--FIN SECTION--> 
+			<!-- ================== -->
+            
+            <!-- ** -->
+            <!-- ** -->
+            <!-- ** -->
+            <!-- ** -->
+            <!-- ** -->
+            <!-- ** -->
+            <!--ASIDE--> 
+			<!-- ================== -->
+        	<aside id="asideIndex">
+            
+<!-- LATERAL EQUIPO -->
+	<?php include ("http://culturademontania.org.ar/templates/tmpl_culturademontania/scripts/lateral_derecho_equipo.html"); ?>                    
+<!-- FIN LATERAL EQUIPO -->               
+                
+              <!--Suscribcion a Facebook--> 
+				<!-- ================== -->
+                <div class="cont_310px">
+                	<div class="titleCont_310px">
+                        <h1 class="titlePrincipal">Suscribite a Noticias de Montaña</h1>
+                    </div>
+						<div>
+                        	<br>
+                        	<div class="fb-page" data-href="https://www.facebook.com/noticiasdemontania?ref=hl" data-width="310" data-height="290" data-small-header="false" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="true" data-show-posts="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/noticiasdemontania?ref=hl"><a href="https://www.facebook.com/noticiasdemontania?ref=hl">Noticias de Montaña</a></blockquote></div></div>
+                        </div>
+                </div>
+                <!--Fin Suscribcion a Facebook--> 
+				<!-- ================== -->
+                
+                <!--patrocinadores--> 
+				<!-- ================== -->
+                <div class="cont_310px">
+                	<!--<div class="titleCont_310px">
+                        <!--<h1 class="titlePrincipal"></h1>
+                    </div>-->
+                    <ul id="listaPatrocinadores">
+                        <li>
+                          <img src="../../images/banners/seccion_entrenamiento.jpg" alt="Seccion Técnica & Entrenamiento" width="310" height="320" border="0" usemap="#MapMapMap">
+                            <map name="MapMapMap">
+                              <area shape="rect" coords="1,-16,314,374" href="http://www.culturademontania.org.ar/entrenamientos/2.htm" target="_blank">
+                          </map>
+</li>
+
+<li>
+<a href="http://www.culturademontania.org.ar/Montanas/montana.htm" target="_blank"><img src="/images/banners/seccion_guiasmontanas.jpg" alt="Seccion Guías de Montañas Argentinas" width="310" height="320"></a>
+</li>
+                        <li>
+                          <a href="http://www.culturademontania.org.ar/Arqueologia/arqueo.htm" target="_blank"><img src="/images/banners/seccion_arqueologia.jpg" width="310" height="320"></a>
+</li>
+                        <li>
+                          <a href="http://www.culturademontania.org.ar/Libros/libro.htm" target="_blank"><img src="/images/banners/seccion_libros.jpg" width="310" height="320"></a>
+</li>                                              
+                        <li>
+                          <img src="../../images/banner_foto.jpg" alt="Banner Material Fotográfico" width="310" height="500" border="0" usemap="#MapMap">
+                            <map name="MapMap">
+                              <area shape="rect" coords="4,0,314,498" href="mailto:info@culturademontania.org.ar" target="_blank">
+                          </map>
+                      </li>                                     
+                        
+                  </ul>
+                </div>
+                <!--Fin patrocinadores--> 
+				<!-- ================== -->
+                
+               
+            </aside>
+            
+            <!-- ** -->
+            <!-- ** -->
+            <!-- ** -->
+            <!-- ** -->
+            <!-- ** -->
+            <!-- ** -->
+            <!--Banner Bottom-->
+            <div id="contBannerBottom">
+            	<a href="http://www.culturademontania.org.ar/suscripcion.htm" target="_blank"><img src="../../images/img-bannerBottom-980px.jpg" alt="Acompáñanos en esta gran aventura - Sé parte del equipo de CCAM - ÚNETE AHORA" border="1"></a>
+            </div> 
+    </div>
+        <!-- FIN CONTENEDOR PAGE --> 
+		<!-- ================== -->
+        <!-- ** -->
+        <!-- ** -->
+        <!-- ** -->
+        <!-- ** -->
+        <!-- ** -->
+        <!-- ** -->
+</div>
+    <!-- DIV CONTENEDOR --> 
+	<!-- ================== -->
+    
+    <!-- FOOTER --> 
+	<!-- ================== -->
+    <footer>
+    	<div id="contFooter">
+        	<div id="logoFooter">
+            
+            	<!-- CONTENEDOR LOGO --> 
+				<!-- ================== -->
+            	<div id="contLogoHeader">
+               	  <img src="../../images/img-logoHeader.png" alt="Centro Cultural Agentino de Montaña - go Index">
+                </div>
+                <!-- FIN CONTENEDOR LOGO --> 
+				<!-- ================== -->
+                
+                <!-- CONTENEDOR TITULO --> 
+				<!-- ================== -->
+                <div id="contTitulo">
+                	<ul>
+                    	<li>
+                			<h1>CENTRO CULTURAL ARGENTINO de MONTAÑA</h1>
+                        </li>
+                        <li>
+                    		<span>POR UNA CULTURA DE MONTAÑA ARGENTINA.</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                
+            </div>
+        </div>
+    	
+    </footer>
+    <!-- FOOTER --> 
+	<!-- ================== -->
+    
+
+<map name="Map4">
+  <area shape="rect" coords="5,3,194,245" href="/Libros/entre-nieves-y-huacas.html" target="_blank">
+</map>
+
+<map name="Map2">
+  <area shape="rect" coords="7,1,195,246" href="/Libros/desde-el-volcan.html" target="_blank">
+</map>
+</body>
+</html>

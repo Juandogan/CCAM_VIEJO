@@ -1,0 +1,125 @@
+#contNotasLateral{
+
+	width:350px;
+
+	padding:10px 0 0 0;
+
+}
+
+#contNotasLateral li{
+
+	float:left;
+
+	margin-bottom:8px;
+
+}
+
+#contNotasLateral li:nth-child(1n-2){
+
+	margin-right:0px;
+
+}
+
+#contNotasLateral li:nth-child(1n){
+
+	margin-left:0px;
+
+}
+
+#contNotasLateral li{
+
+	position:relative;
+
+	display:table;
+
+	width:310px;
+
+	height:300px;
+
+	border:1px solid #303642;
+
+	background-image:url(http://culturademontania.org.ar/images/backlateral-baseNoticias.jpg);
+
+	background-repeat:repeat-x;
+
+	cursor:pointer; .margin-right:5px;
+
+}
+
+
+
+#contNotasLateral img.margen{
+
+	position:absolute;
+
+	top:10px;
+
+	left:10px;
+
+}
+
+#contNotasLateral img.shadTumbNewsIndex{
+
+	position:absolute;
+
+	top:210px;
+
+	left:10px;
+
+}
+
+#contNotasLateral p{
+
+position: absolute;
+
+top: 220px;
+
+left: 10px;
+
+font-family: 'Oswald', sans-serif;
+
+font-weight: 400;
+
+color: black;
+
+font-size: 16px;
+
+padding-right: 8px;
+
+width: 250px;
+
+}
+
+#contNotasLateral li.hover{
+
+	position:relative;
+
+	display:table;
+
+	width:310px;
+
+	height:300px;
+
+	border:1px solid #303642;
+
+	background-color:#139bf9;
+
+	background-image:url(http://culturademontania.org.ar/images/back-baseNoticias_hover.jpg);
+
+	background-repeat:repeat-x;
+
+	cursor:pointer;
+
+}
+
+#contNotasLateral li.hover img.shadTumbNewsIndex{
+
+	display:none;
+
+}
+
+#contNotasLateral li.hover p{
+
+	color:#FFF;
+
+}

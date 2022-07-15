@@ -1,0 +1,712 @@
+body {
+	padding:0;
+	margin:0;
+	background-color:#FFF;
+	background-image:url(/images/back-body.jpg);
+	background-position:top center;
+	background-repeat:no-repeat;
+	behavior: url(/PIE.htc);
+}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, p, blockquote, th, td {
+	margin:0;
+	padding:0;
+	font-family:Arial, sans-serif;
+	color:#FFF;
+	behavior: url(/PIE.htc);
+}
+img {
+	border:0;
+	behavior: url(/PIE.htc);
+}
+ol, ul {
+	list-style:none;
+	behavior: url(/PIE.htc);
+}
+table {
+	border-collapse:collapse;
+	border-spacing:0;
+	behavior: url(/PIE.htc);
+}
+fieldset, img {
+	border:0;
+	behavior: url(/PIE.htc);
+}
+caption, th {
+	text-align:left;
+	behavior: url(/PIE.htc);
+}
+.cleaner {
+	clear:both;
+	visibility:hidden;
+	font-size:0;
+	height:0;
+	display:block;
+	behavior: url(/PIE.htc);
+}
+#contPage{
+	width:980px;
+	margin:auto;
+}
+.textoParrafo{
+	font-family:Verdana, Geneva, sans-serif;
+	font-size:11px;
+	color:#323232;
+	text-align:justify;
+}
+.textoCorrido{
+	font-family:Verdana, Geneva, sans-serif;
+	font-size:11px;
+	color:#323232;
+}
+.textoCorridoItalic{
+	font-family:Verdana, Geneva, sans-serif;
+	font-style:italic;
+	font-size:13px;
+	color:#00b2fc;
+}
+.textoCorridoImport{
+	font-family: 'Oswald', sans-serif;
+	font-weight:400;
+	font-size:17px;
+}
+/*ESTILO HEADER */
+/*****************************/
+#indexHeader{
+	width:980px;
+	height:154px;
+	background-image:url(/images/back-headerIndex.png);
+	background-repeat:repeat-x;
+}
+#headerIzq{
+	width:460px;
+	float:left;
+	margin:23px 0 27px 17px;
+}
+#contLogoHeader{
+	width:120px;
+	float:left;
+	margin:0 5px 5px 0;
+	cursor:pointer;	
+}
+#contTitulo{
+	width:260px;
+	height:78px;
+	border-left:1px solid #FFF;
+	margin:20px 0 0 0;
+	padding:0 0 0 10px;
+	cursor:pointer;	
+	float:left;
+}
+#contTitulo li{
+	float:left;
+}
+#contTitulo h1{
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size:18px;
+	color:#FFF;
+	margin:5px 0 0 0;
+}
+#contTitulo span{
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size:11px;
+	color:#f18902;
+	font-style:italic;
+	margin:13px 0 0 0;
+}
+#contTitulo img.masCultura{
+	margin:0 0 0 10px;
+}
+#headerDer{
+	float:right;
+	padding:0 20px 0 0;
+}
+#fechaIndex{
+	width:400px;
+	height:36px;
+	background-image:url(/images/back-indexMesHeader.jpg);
+    margin-bottom: 20px;
+	border-left:1px solid #031d2b;
+	border-bottom:1px solid #031d2b;
+	border-right:1px solid #031d2b;
+	border-radius: 0 0 8px 8px;
+	-moz-border-radius: 0 0 8px 8px;
+	-ms-border-radius: 0 0 8px 8px;
+	-webkit-border-radius: 0 0 8px 8px;
+	-khtml-border-radius: 0 0 8px 8px;
+	text-align:left;
+	-moz-box-shadow: inset 0 0 15px 5px #006b93;
+	-webkit-box-shadow: inset 0 0 15px 5px #006b93;
+	box-shadow: inset 0 0 15px 5px #006b93; 
+}
+#fechaIndex span{
+	font-family: 'Oswald', sans-serif;
+	font-weight:400;
+	color:#ffffff;
+	font-size:18px;
+	margin:10px 0 0 20px;
+	line-height:30px;
+}
+#contShared{
+	display:table;
+	width:223px;
+	margin-top:36px;
+	border-bottom:#FFF 1px dotted;
+	border-top:#FFF 1px dotted;
+	padding:5px 0 0 0;
+}
+#contShared span{
+	font-family: 'Oswald', sans-serif;
+	font-weight:400;
+	color:#ffffff;
+	font-size:14px;
+	margin:0;
+	padding:2px 13px 2px 0;
+}
+/*FIN ESTILO HEADER */
+/*****************************/
+
+/*ESTILO SLIDER */
+/*****************************/
+#sliderIndex{
+	position:relative;
+	width:980px;
+	height:400px;
+	background-color:#FFF;
+}
+#listadoNews{
+	position:absolute;
+	z-index:2;
+	top:0;
+	left:0;
+	width:376px;
+	height:400px;
+}
+#listadoNews li{
+	width:376px;
+	height:49px;
+	margin:0 0 1px 0;
+	display:table;
+	position:relative;
+	cursor:pointer;
+}
+#listadoNews li h2{
+	text-transform:uppercase;
+	font-family: 'Oswald', sans-serif;
+	font-weight:400;
+	font-size:14px;
+	position:absolute;
+	top:14px;
+	left:31px;
+	z-index:3;
+	width: 320px;
+}
+#listadoNews div.backListaNews{
+	width:348px;
+	height:49px;
+	background-color:#303642;
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:1;
+}
+#backColorNew_0{
+	width:348px;
+	height:49px;
+	background-image:url(/images/back_news_1.jpg);
+	background-repeat:repeat-y;
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:2;
+}
+#backColorNew_1{
+	width:348px;
+	height:49px;
+	background-image:url(/images/back_news_2.jpg);
+	background-repeat:repeat-y;
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:2;
+}
+#backColorNew_2{
+	width:348px;
+	height:49px;
+	background-image:url(/images/back_news_3.jpg);
+	background-repeat:repeat-y;
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:2;
+}
+#backColorNew_3{
+	width:348px;
+	height:49px;
+	background-image:url(/images/back_news_4.jpg);
+	background-repeat:repeat-y;
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:2;
+}
+#backColorNew_4{
+	width:348px;
+	height:49px;
+	background-image:url(/images/back_news_5.jpg);
+	background-repeat:repeat-y;
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:2;
+}
+#backColorNew_5{
+	width:348px;
+	height:49px;
+	background-image:url(/images/back_news_6.jpg);
+	background-repeat:repeat-y;
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:2;
+}
+#backColorNew_6{
+	width:348px;
+	height:49px;
+	background-image:url(/images/back_news_7.jpg);
+	background-repeat:repeat-y;
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:2;
+}
+#backColorNew_7{
+	width:348px;
+	height:49px;
+	background-image:url(/images/back_news_8.jpg);
+	background-repeat:repeat-y;
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:2;
+}
+.arrowListNews{
+	position:absolute;
+	top:0;
+	left:320px;
+	z-index:0;
+}
+#picturesNews{
+	position:absolute;
+	z-index:1;
+	top:0;
+	left:348px;
+	width:632px;
+	height:359px;
+}
+#picturesNews li{
+	width:632px;
+	height:399px;
+	border-bottom:1px solid #FFF;
+	position:relative;
+}
+#picturesNews li h2{
+	text-transform:uppercase;
+	font-family: 'Oswald', sans-serif;
+	font-weight:400;
+	font-size:14px;
+	position:absolute;
+	top:245px;
+	left:32px;
+	z-index:2;
+}
+#picturesNews li p{
+	position: absolute;
+	color: #FFF;
+	padding: 0 20px 0 0;
+	top: 322px;
+	left: 33px;
+	z-index: 2;
+	height: 71px;
+}
+#picturesNews li span{
+	color:#F90;
+}
+#picturesNews li a{
+	position:absolute;
+	font-family: 'Oswald', sans-serif;
+	font-weight:400;
+	font-size:14px;
+	text-decoration:none;
+	color:#FFF;
+	padding:5px;
+	background-color:#00b2fc;
+	top:360px;
+	left:538px;
+	z-index:2;
+}
+#picturesNews li a:hover{
+	background-color:#F90;
+}
+.imgNews{
+	position:absolute;
+	width:632px;
+	height:399px;
+	z-index:0;
+	top: 0px;
+}
+.backInfoNews{
+	position:absolute;
+	width:632px;
+	height:80px;
+	top:319px;
+	background-color:#000;
+	opacity:0.7;
+	filter:alpha(opacity=70);
+	z-index:1;
+}
+/*FIN ESTILO SLIDER */
+/*****************************/
+
+/*ESTILO PAGE */
+/*****************************/
+#contSectionAside{
+	width:980px;
+	display:table;
+	background-image:url(/images/back-sombraSlideIndex.png);
+	background-repeat:no-repeat;
+	background-position:top;
+}
+
+/*ESTILO SECTION */
+/*****************************/
+#sectionIndex{
+	width:648px;
+	float:left;
+}
+#asideIndex{
+	width:310px;
+	float:right;
+	margin:0 0 0 20px;
+}
+.cont_650px{
+	width:650px;
+	display:table;
+	margin:20px 0 0 0;
+}
+.titleCont_650px{
+	width:650px;
+	height:23px;
+	border-bottom:#000 1px solid;
+}
+.titlePrincipal{
+	font-family: 'Oswald', sans-serif;
+	font-weight:400;
+	color:#000000;
+	font-size:18px;
+	background-image:url(/images/img-bulletIndex.jpg);
+	background-position:left;
+	background-repeat:no-repeat;
+	padding:0 0 5px 5px;
+}
+#contImgText{
+	margin:10px 10px 0 0;
+	float:left;
+}
+.contImg{
+	background-color:#00b2fc;
+	padding:3px 3px 0 3px;
+	display:table;
+}
+#textEdit{
+	width:500px;
+	margin:15px 0 0 0;
+	float:left;
+}
+
+#contNoticiasIndex{
+	width:648px;
+	padding:10px 0 0 0;
+}
+#contNoticiasIndex li{
+	float:left;
+	margin-bottom:8px;
+}
+#contNoticiasIndex li:nth-child(3n-2){
+	margin-right:7px;
+}
+#contNoticiasIndex li:nth-child(3n){
+	margin-left:7px;
+}
+#contNoticiasIndex li{
+	position:relative;
+	display:table;
+	width:209px;
+	height:300px;
+	border:1px solid #303642;
+	background-image:url(/images/back-baseLibros.jpg);
+	background-repeat:repeat-x;
+	cursor:pointer;
+}
+
+#contNoticiasIndex img.fadegray{
+	position:absolute;
+	top:5px;
+	left:5px;
+}
+#contNoticiasIndex img.shadTumbNewsIndex{
+	position:absolute;
+	top:235px;
+	left:5px;
+}
+#contNoticiasIndex p{
+	position:absolute;
+	top:235px;
+	left:5px;
+	font-family: 'Oswald', sans-serif;
+	font-weight:400;
+	color:#000000;
+	font-size:14px;
+	padding-right:8px;
+}
+#contNoticiasIndex li.hover{
+	position:relative;
+	display:table;
+	width:209px;
+	height:300px;
+	border:1px solid #303642;
+	background-color:#139bf9;
+	background-image:url(/images/back-baseLibros_hover.jpg);
+	background-repeat:repeat-x;
+	cursor:pointer;
+}
+#contNoticiasIndex li.hover img.shadTumbNewsIndex{
+	display:none;
+}
+#contNoticiasIndex li.hover p{
+	color:#FFF;
+}
+
+.cont_315px_article{
+	width:315px;
+	display:table;
+	margin-bottom:30px;
+	float:left;
+	/*height:320px;
+	border-bottom:#303642 1px solid;*/
+}
+.titleCont_315px{
+	width:315px;
+	height:23px;
+	border-bottom:#000 1px solid;
+}
+.titleSecundario{
+	font-family: 'Oswald', sans-serif;
+	font-weight:400;
+	color:#074976;
+	font-size:14px;
+	padding:10px 0 10px 0;
+}
+.botonAmpliar{
+	float:right;
+	margin:15px 0 0 0;
+	padding:4px 16px 4px 5px;
+	background-color:#139bf9;
+	background-image:url(/images/img_punta_btMas.jpg);
+	background-repeat:no-repeat;
+	background-position:center right;
+	text-decoration:none;
+	font-family: 'Oswald', sans-serif;
+	font-weight:400;
+	color:#FFF;
+	font-size:12px;
+	border-left:#F90 5px solid;
+}
+.botonMasVideoLibro a:hover{
+	background-image:url(/images/back-masVideoLibro_hover.png);
+}
+#imgDesLibro{
+	width:314px;
+}
+.imgLibro{
+	width:94px;
+	height:135px;
+	float:left;
+}
+.descLibro{
+	width:206px;
+	margin:0 0 0 10px;
+	float:left;
+}
+
+.cont_310px{
+	width:310px;
+	display:table;
+	margin:20px 0 0 0;
+}
+.titleCont_310px{
+	width:310px;
+	height:23px;
+	border-bottom:#000 1px solid;
+}
+/*******************************************/
+/* EFECTO CONTAINER */
+.contFrases{
+	height:257px;
+	overflow:hidden;
+	margin:10px 0 0 0;
+	background-color:#000;
+}
+.slideFrase{
+	position:relative;
+	width:310px;
+	height:257px;
+	background-color:#000;
+}
+.slideFrase img.tumbSlidefrase{
+	position:absolute;
+	z-index:0;
+	top:0;
+	left:0;
+}
+.slideFrase img.overTumbfrase{
+	position:absolute;
+	z-index:1;
+	top:0;
+	left:0;
+}
+.slideFrase p{
+	position:absolute;
+	width:290px;
+	z-index:2;
+	top:80px;
+	left:10px;
+}
+.slideFrase span.frase{
+	font-family: 'Oswald', sans-serif;
+	font-weight:400;
+	color:#FFF;
+	font-size:14px;
+}
+.slideFrase span.autorFrase{
+	font-family: 'Oswald', sans-serif;
+	font-weight:400;
+	color:#09F;
+	font-size:14px;
+}
+.slideFrase span.historiaFrase{
+	font-family: 'Oswald', sans-serif;
+	font-weight:400;
+	color:#FFF;
+	font-size:12px;
+}
+#contBannerBottom{
+	margin:10px 0 10px 0;
+}
+
+#listaPatrocinadores li:first-child{
+	margin:10px 0 5px 0;
+}
+
+
+#listaPatrocinadores li{
+	margin:5px 0 5px 0;
+}
+
+footer{
+	width:100%;
+	height:176px;
+	background-color:#02101a;
+	border-top:#77c1f6 solid 1px;
+}
+#contFooter{
+	width:940px;
+	height:136px;
+	margin:auto;
+	background-image:url(/images/back_footer.jpg);
+	background-repeat:no-repeat;
+	background-position:center top;
+	padding:20px;
+	cursor:pointer;		
+}
+#logoFooter{
+	width:400px;
+	margin:auto;
+}
+
+/**********************************************
+/*LIGHTBOX*/
+#lightBoxBack {
+	background-color:#000;
+	/* Required for IE 5, 6, 7 */
+	/* ...or something to trigger hasLayout, like zoom: 1; */
+	width: 100%;
+	/* Theoretically for IE 8 & 9 (more valid) */
+	/* ...but not required as filter works too */
+	/* should come BEFORE filter */
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=85)";
+	/* This works in IE 8 & 9 too */
+	/* ... but also 5, 6, 7 */
+	filter: alpha(opacity=75);
+	/* Older than Firefox 0.9 */
+	-moz-opacity:0.75;
+	/* Safari 1.x (pre WebKit!) */
+	-khtml-opacity: 0.75;
+	/* Modern!
+	/* Firefox 0.9+, Safari 2?, Chrome any?
+	/* Opera 9+, IE 9+ */
+	opacity: 0.75;
+	clear:both;
+	position:absolute;
+	z-index:500;
+	behavior: url(/PIE.htc);
+}
+.imgLightBox{
+	cursor:pointer;
+}
+#imagenLightBox {
+	position:absolute;
+	z-index:700;
+	visibility:hidden;
+}
+#imagenLightBox img{
+	border:4px #000 solid;
+}
+#imagenLightBox a{
+	position:absolute;
+	height:24px;
+	width:40px;
+	padding:5px;
+	background-color:#F60;
+	font-family: 'Oswald', sans-serif;
+	font-weight:400;
+	font-size:16px;
+	color:#FFFFFF;
+	cursor:pointer;
+}
+
+.botonVolver2 {
+
+	display:block;
+
+	padding:4px 0 0 0;
+
+	width:215px;
+
+	height:22px;
+
+	text-transform: uppercase;
+
+	text-decoration: none;
+
+	font-family: 'Oswald', sans-serif;
+
+	font-weight: 400;
+
+	color: #FFF;
+
+	font-size: 11px;
+
+	background-image:url(/images/volver_largo.jpg);
+
+}
+/**********************************************

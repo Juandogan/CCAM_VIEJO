@@ -1,0 +1,1198 @@
+﻿<!DOCTYPE html>
+
+<head>
+<title>CCAM - Centro Cultural Argentino de Montaña</title>
+<meta charset="UTF-8" />
+<!-- CSS -->
+<link href="../../css.css"rel="stylesheet" type="text/css">
+
+ 
+<!-- para que el HTML5 funcione en navegadores anteriores a IE9 -->
+<!--[if lt IE 9]> 
+    <script type="text/javascript"> 
+       document.createElement("nav"); 
+       document.createElement("header"); 
+       document.createElement("footer"); 
+       document.createElement("section"); 
+       document.createElement("article"); 
+       document.createElement("aside"); 
+       document.createElement("hgroup"); 
+    </script>
+<![endif]-->
+
+<!-- o puedo hacer esto.... -->
+<!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+<!--[enlace google fonts]-->
+<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Cuprum' rel='stylesheet' type='text/css'>
+<!--[enlace google fonts]-->
+
+<!--[FAVICON]-->
+<link rel="shortcut icon" type="image/x-icon" href="../../images/favicon.ico">
+
+<!-- [JQuery] -->
+<script type="text/javascript" src="../../js/jquery.js"></script>
+<script type="text/javascript" src="../../js/fade-plugin.js"></script>
+
+<!-- [METAS] -->
+<meta property="og:title" content="Centro Cultural Argentino de Montaña"/>
+<meta property="og:type" content="Centro Cultural Argentino de Montaña"/>
+<meta property="og:url" content="http://www.culturademontania.org.ar/"/>
+<meta property="og:image" content="http://www.culturademontania.org.ar/images/tumb.jpg"/>
+<meta property="og:site_name" content="Centro Cultural Argentino de Montaña"/>
+<meta property="og:description"
+          content="El CCAM es una Institución argentina, fundada el 5 de Julio del 2000 que tiene como misión promover el desarrollo cultural, social y deportivo de las comunidades de montaña."/>
+<meta name="google-translate-customization" content="459f67bb3e902588-72cefb065735ac4a-gb781dc38316d527a-1c"></meta>          
+
+
+<!-- [Shared JAVA] -->
+<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script> 
+<script type="text/javascript">stLight.options({publisher: "1381341a-aa8b-4134-84b4-d24a4b61afa3"}); </script>
+
+<script type="text/javascript" language="javascript">
+    $(document).ready(function($){
+		
+		<!-- Listado de Noticias -->	
+		var botonON = 0;
+
+		$('#listNews_0').children('div #backColorNew_0').css('width', 28);
+		$('#listNews_0').children('div.arrowListNews').css('left', 348);
+		
+		$('#picturesNews li').hide();
+		$('#picturesNews li:first').show();
+			
+				
+		$('#listadoNews li').mouseover(function(){
+			if(botonON != $(this).index()){
+				$(this).children('div.backColorListNews').animate({width:28}, 500);
+				$(this).children('div.arrowListNews').animate({left:348}, 100);
+			}
+		});
+		$('#listadoNews li').mouseleave(function(){
+			if(botonON != $(this).index()){
+				$(this).children('div.backColorListNews').animate({width:348}, 500);
+				$(this).children('div.arrowListNews').animate({left:320}, 100);
+			}
+		});
+		
+		$('#listadoNews li').click(function(){
+			$('#picturesNews li').hide();
+			var activeTab = $(this).attr("noticia"); //Find the href attribute value to identify the active tab + content
+			$(activeTab).fadeIn();
+			
+			$('#listadoNews li').children('div.backColorListNews').css('width', 348);
+			$('#listadoNews li').children('div.arrowListNews').css('left', 320);
+			
+			$(this).children('div.backColorListNews').css('width', 28);
+			$(this).children('div.arrowListNews').css('left', 348);
+			
+			botonON = $(this).index();
+		});
+//incorp		
+		$('#contLogoHeader').click(function(){
+			window.open('http://www.culturademontania.org.ar');
+			return false;
+		});
+		$('#contTitulo').click(function(){
+			window.open('http://www.culturademontania.org.ar');
+			return false;
+		});		
+		$('#contFooter').click(function(){
+			window.open('http://www.culturademontania.org.ar');
+			return false;
+		});				
+//---		
+		
+		$(window).load(function(){
+			
+			<!-- Efecto blan y negro imagenes. -->
+		
+			// Aplicamos el efecto con la clase ".fadegray" en las imagenes que queramos
+			$("img.fadegray").animate({opacity:1},500);
+			
+			// clonamos imagen
+			$('img.fadegray').each(function(){
+				var el = $(this);
+				el.css({"position":"absolute"}).wrap('<div>').clone().addClass('img_escala_grises').css({"position":"absolute","z-index":"666","opacity":"0"}).insertBefore(el).queue(function(){
+					var el = $(this);
+					el.parent().css({"width":this.width,"height":this.height});
+					el.dequeue();
+				});
+				//this.src = escala_grises(this.src); ---- SE QUITA EL GRISADO INICIAL EN LOS CUADROS DE LAS NOTICIAS
+			});
+			
+			// Fade imagen 
+			$('#contNoticiasIndex li').mouseover(function(){
+				$(this).addClass('hover');
+				$(this).children('img').parent().find('img:first').stop().animate({opacity:1}, 500);
+			})
+			$('#contNoticiasIndex li').mouseout(function(){
+				$(this).removeClass('hover');
+				//$(this).children('img').parent().find('img:first').stop().animate({opacity:0}, 1000);
+				$(this).children('img').parent().find('img:first').stop().animate({opacity:1}, 1000);
+			})
+			$('#contNoticiasIndex li').click(function(){
+				//window.location = $(this).attr('href'); this.target = '_blank';
+				window.open($(this).attr('href'));
+			})
+			
+			// Canvas
+			function escala_grises(src){
+				var canvas = document.createElement('canvas');
+				var ctx = canvas.getContext('2d');
+				var imgObj = new Image();
+				imgObj.src = src;
+				canvas.width = imgObj.width;
+				canvas.height = imgObj.height;
+				ctx.drawImage(imgObj, 0, 0);
+				var imgPixels = ctx.getImageData(0, 0, canvas.width, canvas.height);
+				for(var y = 0; y < imgPixels.height; y++){
+					for(var x = 0; x < imgPixels.width; x++){
+						var i = (y * 4) * imgPixels.width + x * 4;
+						var avg = (imgPixels.data[i] + imgPixels.data[i + 1] + imgPixels.data[i + 2]) / 3;
+						imgPixels.data[i] = avg;
+						imgPixels.data[i + 1] = avg;
+						imgPixels.data[i + 2] = avg;
+					}
+				}
+				ctx.putImageData(imgPixels, 0, 0, 0, 0, imgPixels.width, imgPixels.height);
+				return canvas.toDataURL();
+			}
+			
+		});
+		
+		
+		// FADE SLIDER
+		$(".effectContainer").fadeTransition({
+			pauseTime: 10000,
+			transitionTime: 2000,
+			delayStart: 10000,
+			pauseOnMouseOver: false,
+			createNavButtons: false});
+			
+			
+		<!--STAR LIGHTBOX -->
+		var medioPantalla = $(window).height() * 0.5;
+		
+		$('.imgLightBox').click(function(e){
+			<!-- condicional-->
+			if($(e.currentTarget).attr('tumbBig') !== ""){
+				<!-- seteo la base del lightbox -->
+				$('#lightBoxBack').css('top', 0);
+				$('#lightBoxBack').css('width', $(window).width());
+				$('#lightBoxBack').css('height', $(document).height());
+				$('#lightBoxBack').css('overflow', 'hidden');
+				
+				$('#lightBoxBack').click(function(e){
+					$('#lightBoxBack').css('width', 1);
+					$('#lightBoxBack').css('height', 1);
+					
+					$('#imagenLightBox').css('visibility', 'hidden');
+					$('#imagenLightBox').css('top', -700);
+					$('#imagenLightBox').css('margin-top',  0)
+					
+				});
+				<!-- muestro el div imagenLightBox-->
+				var imagetoLoad = $(e.currentTarget).attr('tumbBig');
+				
+
+				var objImagePreloader = new Image();
+				objImagePreloader.onload = function() {
+					
+					<!-- muestro el div imagenLightBox-->
+					$('#imagenLightBox > img')
+						.removeAttr('src')
+						.attr('src',imagetoLoad);
+					
+					$('#imagenLightBox').css('visibility', 'visible');
+					
+					var picLightW = $('#imagenLightBox > img').width();
+					$('#imagenLightBox > a').css('left', 0);
+					$('#imagenLightBox > a').css('margin-left', picLightW + 8); 
+					$('#imagenLightBox').css('left', '50%');
+					$('#imagenLightBox').css('margin-left', (picLightW * 0.5) * -1);
+					
+					var picLightH = $('#imagenLightBox > img').height();
+					$('#imagenLightBox > a').css('top', 0); 
+					$('#imagenLightBox > a').css('margin-top', 10); 
+					$("#imagenLightBox").animate({'top': medioPantalla + $(window).scrollTop(),'margin-top': (picLightH * 0.5) * -1},'slow','swing');
+					/*alert('ancho ' + $('#imagenLightBox > img').width());*/
+				}
+				objImagePreloader.src = imagetoLoad;
+				return false;
+			}else{
+				$('#lightBoxBack').css('width', 1);
+				$('#lightBoxBack').css('height', 1);
+				$('#imagenLightBox').css('visibility', 'hidden');
+				$('#imagenLightBox').css('top', -700);
+				$('#imagenLightBox').css('margin-top',  0)
+			}
+			<!-- llave cierra condicional-->
+		});
+		
+		$('#imagenLightBox > a').click(function(e){
+			$('#lightBoxBack').css('width', 1);
+			$('#lightBoxBack').css('height', 1);
+			$('#imagenLightBox').css('visibility', 'hidden');
+			$('#imagenLightBox').css('top', -700);
+			$('#imagenLightBox').css('margin-top',  0);
+			return false
+		});
+		<!--END STAR LIGHTBOX -->
+
+});
+	
+
+
+</script>
+
+<!------ PIXEL CONVERSION PARA FACEBOOK ----------------->
+<script type="text/javascript">
+var fb_param = {};
+fb_param.pixel_id = '6011609977270';
+fb_param.value = '0.00';
+fb_param.currency = 'ARS';
+(function(){
+  var fpw = document.createElement('script');
+  fpw.async = true;
+  fpw.src = '//connect.facebook.net/en_US/fp.js';
+  var ref = document.getElementsByTagName('script')[0];
+  ref.parentNode.insertBefore(fpw, ref);
+})();
+</script>
+<style type="text/css">
+<!--
+.Estilo228 {font-size: 10pt; color: #000000; }
+-->
+</style>
+<noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/offsite_event.php?id=6011609977270&amp;value=0&amp;currency=ARS" /></noscript>
+<!-------- FIN SCRIPT PIXEL CONVERSION PARA FACEBOOK ------->
+
+</head>
+
+
+<body>
+
+<!-- ================= -->
+<!-- Light Box -->
+<div id="imagenLightBox">
+    <img src="">
+    <a>Cerrar</a>
+</div>
+<div id="lightBoxBack"></div>
+<!-- Light Box -->
+<!-- ================= -->
+
+	<!-- DIV CONTENEDOR --> 
+	<!-- ================== -->
+  <div id="contPage">
+    
+    	<!-- HEADER --> 
+		<!-- ================== -->
+    <header id="indexHeader">
+        
+        	<!-- HEADER IZQUIERDO --> 
+			<!-- ================== -->
+        	<div id="headerIzq">
+
+            	<!-- CONTENEDOR LOGO --> 
+				<!-- ================== -->
+            	<div id="contLogoHeader">
+                  <img src="http://www.culturademontania.org.ar/templates/tmpl_culturademontania/images/header-object.png" alt="Centro Cultural Agentino de Montaña - Pagina Inicial">
+                </div>
+                <!-- FIN CONTENEDOR LOGO --> 
+				<!-- ================== -->
+                
+                <!-- CONTENEDOR TITULO --> 
+				<!-- ================== -->
+                <!--<div id="contTitulo">
+                	<ul>
+                    	<li>
+                			<h1>CENTRO CULTURAL ARGENTINO de MONTAÑA</h1>
+                        </li>
+                        <li>
+                    		<span>POR UNA CULTURA DE MONTAÑA ARGENTINA.</span>
+                      </li>
+                        <li></li>
+                    </ul>
+                </div>
+                -->
+                
+                <!-- FIN CONTENEDOR TITULO --> 
+				<!-- ================== -->
+            </div>
+            
+            <!-- FIN HEADER IZQUIERDO --> 
+			<!-- ================== -->
+            
+            
+            <!--HEADER DERECHO --> 
+			<!-- ================== -->
+            <div id="headerDer">
+            	<!--FECHA PUBLICACIÓN DIGITAL --> 
+				<!-- ================== -->
+            	<div id="fechaIndex">
+                	<span>Revista Digital de Montaña Nro 49 - Enero 2015</span>
+                </div>                
+				<!-- BUSCADOR -->
+				<div class="custom-gs">        
+					<script src='//www.google.com/jsapi' type='text/javascript'></script>
+					<script src="/templates/tmpl_culturademontania/scripts/searchbox_buscador.js" type="text/javascript"></script>
+					<!-- Contenedor del Buscador -->
+					<link rel="stylesheet" type="text/css" href="http://culturademontania.org.ar/templates/tmpl_culturademontania/css/googlesearch.css"/>
+					<div id='cse-search-form' style="width: 25%;"></div>                         
+				</div>
+				<!-- FIN BUSCADOR -->
+
+                <!--TRADUCTOR GOOGLE -->
+                <div class="custom-gt"  >
+				<div id="google_translate_element"></div><script type="text/javascript">
+				function googleTranslateElementInit() {
+				  new google.translate.TranslateElement({pageLanguage: 'es', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false}, 			'google_translate_element');
+				}
+				</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>             
+                </div>
+                <!--FIN TRADUCTOR GOOGLE --> 
+                           
+                <!--FIN FECHA PUBLICACIÓN DIGITAL --> 
+				<!-- ================== -->
+                
+                <!-- SHARED --> 
+				<!-- ================== 
+                <div id="contShared">
+                	<span>Shared</span>
+                    <span class='st_facebook' st_title='Centro Cultural Argentino de Montaña' st_url='http://www.culturademontania.org.ar' st_image='http://www.culturademontania.org.ar/images/tumb.jpg'></span>
+					<span class='st_twitter' st_title='Centro Cultural Argentino de Montaña' st_url='http://www.culturademontania.org.ar' st_image='http://www.culturademontania.org.ar/images/tumb.jpg'></span>
+                    <span class='st_linkedin' st_title='Centro Cultural Argentino de Montaña' st_url='http://www.culturademontania.org.ar' st_image='http://www.culturademontania.org.ar/images/tumb.jpg'></span>
+                    <span class='st_googleplus' st_title='Centro Cultural Argentino de Montaña' st_url='http://www.culturademontania.org.ar' st_image='http://www.culturademontania.org.ar/images/tumb.jpg'></span>
+                    <span class='st_sharethis' st_title='Centro Cultural Argentino de Montaña' st_url='http://www.culturademontania.org.ar' st_image='http://www.culturademontania.org.ar/images/tumb.jpg'></span>
+                </div>
+                <!-- FIN SHARED --> 
+				<!-- ================== -->
+            </div>
+			<!-- FIN HEADER DERECHO --> 
+			<!-- ================== -->
+        </header>
+        <!-- FIN HEADER --> 
+		<!-- ================== -->
+        
+        
+        <!-- ** -->
+        <!-- ** -->
+         
+        <!--SLIDER --> 
+		<!-- ================== -->
+        <div id="sliderIndex">
+			<!-- Listado NEWS -->
+          <ul id="listadoNews">
+            	<li id="listNews_0" noticia='#news_0'>
+                	<h2><span class="titleCont">
+                	  <h10>
+                	    <h10>
+                	      <h10>
+                	        <h10>El Sierra Nevada, el último 6000 de los Andes</h10>
+                	      </h10>
+                	    </h10>
+                	  </h10>
+                	</span></h2>
+                    <div id="backColorNew_0" class="backColorListNews"></div>
+                    <div class="backListaNews"></div>
+                    <div class="arrowListNews"><img src="../../images/img_arrowNews.jpg" alt="Noticia Seleccionada"></div>
+            </li>
+                <li id="listNews_1" noticia='#news_1'>
+                	<h2><span class="titleCont">
+               	    <h10>
+               	      <h10>
+               	        <h10>
+               	          <h10>Cabalgando por el Camino de los Inkas</h10>
+               	        </h10>
+               	      </h10>
+               	    </h10>
+                	</span></h2>
+                    <div id="backColorNew_1" class="backColorListNews"></div>
+                    <div class="backListaNews"></div>
+                    <div class="arrowListNews"><img src="../../images/img_arrowNews.jpg" alt="Noticia Seleccionada"></div>
+                </li>
+                <li id="listNews_2" noticia='#news_2'>
+                	<h2><span class="titleCont">
+               	    <h10>
+               	      <h10>
+               	        <h10>El avión Uruguayo, en el Valle de las lagrimas</h10>
+               	      </h10>
+               	    </h10></span></h2>
+                    <div id="backColorNew_2" class="backColorListNews"></div>
+                    <div class="backListaNews"></div>
+                    <div class="arrowListNews"><img src="../../images/img_arrowNews.jpg" alt="Noticia Seleccionada"></div>
+              </li>
+                <li id="listNews_3" noticia='#news_3'>
+                	<h2><span class="titleCont">
+                	  <h10>
+                	    <h10>
+                	      <h10>Guía de Montañas Argentinas: Volcán Socompa</h10>
+                	    </h10>
+                	  </h10>
+                	</span></h2>
+                    <div id="backColorNew_3" class="backColorListNews"></div>
+                    <div class="backListaNews"></div>
+                    <div class="arrowListNews"><img src="../../images/img_arrowNews.jpg" alt="Noticia Seleccionada"></div>
+                </li>
+                <li id="listNews_4" noticia='#news_4'>
+                	<h2><span class="titleCont">
+                	  <h10>El Aconcagua, el Santuario sagrado de los Incas</h10>
+                	</span></h2>
+                    <div id="backColorNew_4" class="backColorListNews"></div>
+                    <div class="backListaNews"></div>
+                    <div class="arrowListNews"><img src="../../images/img_arrowNews.jpg" alt="Noticia Seleccionada"></div>
+                </li>
+                <li id="listNews_5" noticia='#news_5'>
+                	<h2><span class="titleCont">
+               	    <h10>
+               	      <h10>Reichert, Padre del Andinismo de Exploración</h10>
+               	    </h10>
+                	</span></h2>
+                    <div id="backColorNew_5" class="backColorListNews"></div>
+                    <div class="backListaNews"></div>
+                    <div class="arrowListNews"><img src="../../images/img_arrowNews.jpg" alt="Noticia Seleccionada"></div>
+            </li>
+                <li id="listNews_6" noticia='#news_6'>
+                	<h2><span class="titleCont">
+                	  <h10>
+                	    <h10>La vida de Wolfang Güllich</h10>
+                	  </h10>
+                	</span></h2>
+                    <div id="backColorNew_6" class="backColorListNews"></div>
+                    <div class="backListaNews"></div>
+                    <div class="arrowListNews"><img src="../../images/img_arrowNews.jpg" alt="Noticia Seleccionada"></div>
+                </li>
+                <li id="listNews_7" noticia='#news_7'>
+                	<h2><span class="titleCont">
+                	  <h10>
+                	    <h10>Biografía del Teniente Francisco Gerónimo Ibáñez</h10>
+               	      <h10></h10></h10></span></h2>
+                    <div id="backColorNew_7" class="backColorListNews"></div>
+                    <div class="backListaNews"></div>
+                    <div class="arrowListNews"><img src="../../images/img_arrowNews.jpg" alt="Noticia Seleccionada"></div>
+                </li>
+            </ul>
+            <!-- FIN Listado NEWS --> 
+            
+            <!-- PICTURES NEWS -->
+<ul id="picturesNews">
+            	<li id="news_0">
+                  <p class="textoCorridoImport">Realizando el Primer ascenso a 6.160 mts., Provincia de Catamarca, límite con Chile<br>
+                  <span class="textoCorridoItalic">Guillermo Almaraz, Escritor y Montañista</span></p>
+                    
+                  <a href="http://www.culturademontania.org.ar/Relatos/primer-ascenso-sierra-nevada-catamarca-chile.html" target="_blank" title="Ampliar Noticia" class="btAmpliarNews">Ampliar Nota</a>
+                	<div class="backInfoNews"></div>
+                    <div class="imgNews"><img src="/images/catamarca_sierra_nevada_guillermo_almaraz_02.jpg"></div>
+                </li>
+                
+                <li id="news_1">
+                  <p class="textoCorridoImport">Esta aventura comenzó en la Provincia de Jujuy y luego de 52 días concluyo en la Provincia de San Juan<br>
+                    <span class="textoCorridoItalic">Antonio Beorchia Nigris</span></p>
+                  <a href="http://www.culturademontania.org.ar/Relatos/cabalgando-por-el-camino-de-los-incas.html" target="_blank" title="Ampliar Noticia" class="btAmpliarNews">Ampliar Nota</a>
+                	<div class="backInfoNews"></div>
+                    <div class="imgNews"><img src="../../images/jujuy_salinas_grandes_antonio_beorchia_02.jpg"></div>
+                </li>
+                
+                <li id="news_2">
+                    <p class="textoCorridoImport">Motivados por la increíble historia de supervivencia de los Uruguayos. Nos comparten una de las experiencias más extremas vividas en la montaña<br>
+                      <span class="textoCorridoItalic">Matías Vivanco, Programa de TV "Hoy No Duermo en Casa"</span></p>
+                  <a href="http://www.culturademontania.org.ar/Relatos/avion-de-los-uruguayos-valle-delas-lagrimas.html" target="_blank" title="Ampliar Noticia" class="btAmpliarNews">Ampliar Nota</a>
+                	<div class="backInfoNews"></div>
+                    <div class="imgNews"><img src="../../images/avion_cordillera_de_los_andes_parrado_02.jpg"></div>
+                </li>
+                
+                <li id="news_3">
+                  <p class="textoCorridoImport">Salta (Argentina) – Región de Antofagasta (Chile)<br>
+                  <span class="textoCorridoItalic">Christian Vitry, Montañista y Antropólogo</span></p>
+                  <a href="http://www.culturademontania.org.ar/Arqueologia/montanas-argentinas-volcan-socompa.html" target="_blank" title="Ampliar Noticia" class="btAmpliarNews">Ampliar Nota</a>
+               	  <div class="backInfoNews"></div>
+                    <div class="imgNews"><img src="../../images/salta_volcan_socompa_christian_vitry_02.jpg"></div>
+                </li>
+                
+                <li id="news_4">
+                  <p class="textoCorridoImport">A 30 años del hallazgo de la momia del Aconcagua<br>
+                    <span class="textoCorridoItalic">Christian Vitry y Juan Schobinger</span></p>
+                  <a href="http://www.culturademontania.org.ar/Arqueologia/ARQ_aconcagua-incas_012010.htm" target="_blank" title="Ampliar Noticia" class="btAmpliarNews">Ampliar Nota</a>
+               	  <div class="backInfoNews"></div>
+                    <div class="imgNews"><img src="/images/mendoza_momia_aconcagua_descubrimiento_02.jpg"></div>
+                </li>
+                
+                <li id="news_5">
+                  <p class="textoCorridoImport">En esta entrevista biográfica realizada en 1966 en Bariloche por Vojslav Arko, Reichert comparte sus experiencias de la montaña y de la vida<br><span class="textoCorridoItalic">Vojslav Arko</span></p>
+                  <a href="http://www.culturademontania.org.ar/Historia/HIS_federico-reichert.htm" target="_blank" title="Ampliar Noticia" class="btAmpliarNews">Ampliar Nota</a>
+                	<div class="backInfoNews"></div>
+                    <div class="imgNews"><img src="../../images/federido_reichert_hielos_continentales_1930_02.jpg"></div>
+                </li>
+                
+                <li id="news_6">
+                  <p class="textoCorridoImport">Un ángel en el abismo<br>
+                      <span class="textoCorridoItalic">Marcelo Lisnovsky</span></p>
+                  <a href="http://www.culturademontania.org.ar/Historia/la-vida-de-wolfang-gullich.htm" target="_blank" title="Ampliar Noticia" class="btAmpliarNews">Ampliar Nota</a>
+                	<div class="backInfoNews"></div>
+                    <div class="imgNews"><img src="../../images/wolfang_gullich_1984_02.jpg"></div>
+                </li>
+                
+                <li id="news_7">
+                  <p class="textoCorridoImport">Andinista, militar y visionario argentino, héroe de una época<br>
+                  <span class="textoCorridoItalic">José Herminio Hernández. Montañista, Coronel (RE)</span></p>
+                  <a href="http://www.culturademontania.org.ar/Historia/biografia-teniente-francisco-ibanez.htm" target="_blank" title="Ampliar Noticia" class="btAmpliarNews">Ampliar Nota</a>
+                	<div class="backInfoNews"></div>
+                    <div class="imgNews"><img src="../../images/francisco_ibanez_02.jpg"></div>
+                </li>
+          </ul>
+            <!-- FIN PICTURES NEWS -->
+</div>
+        <!-- FIN SLIDER --> 
+		<!-- ================== -->
+        
+        <!-- ** -->
+        <!-- ** -->
+        <!-- ** -->
+        <!-- ** -->
+        <!-- ** -->
+        <!-- ** -->
+        
+        <!--CONTENEDOR PAGE --> 
+		<!-- ================== -->
+      <div id="contSectionAside">
+        
+            <!-- ** -->
+            <!-- ** -->
+            <!-- ** -->
+            <!--SECTION--> 
+			<!-- ================== -->
+        	<section id="sectionIndex">
+            
+            	<!--ARTICLE EDITORIAL--> 
+				<!-- ================== -->
+                <article class="cont_650px">
+            		<!--DIV TITLE--> 
+					<!-- ================== -->
+            		<div class="titleCont_650px"><h1 class="titlePrincipal">Editorial</h1></div>
+                	<!--FIN DIV TITLE--> 
+					<!-- ================== -->
+                
+                	<!--DIV IMAGEN EDITORIAL--> 
+					<!-- ================== -->
+                	<div id="contImgText">
+                		<div class="contImg">
+               			  <img src="../../images/img-fotoEditor.jpg" alt="Foto Editor Guillermo Martin">
+                		</div>
+                		<p><span class="textoCorrido">Guillermo Martin</span><br>
+                    	<span class="textoCorridoItalic">Director del CCAM</span></p>
+                	</div>
+             	<!--FIN DIV IMAGEN EDITORIAL--> 
+					<!-- ================== -->
+                
+                	<!--DIV TEXTO EDITORIAL--> 
+					<!-- ================== -->
+               	  <div id="textEdit">
+               		  <p class="textoParrafo" style="font-size: 12px">           		      Nos propusimos hace 2 años crear un área de noticias que hoy disfrutamos de compartir cada 72 hs. 
+con ustedes<strong> ‘’Noticias de Montaña’’</strong>, creando de esta manera una red de comunicación
+entre las distintas zonas de montaña de nuestro país y de nuestros hermanos de Latinoamérica.</p>
+               		  <p class="textoParrafo" style="font-size: 12px">&nbsp;</p>
+           		    <p class="textoParrafo" style="font-size: 12px">Los invitamos a contactarse y compartir sus experiencias con todos los que hoy son parte del <strong>CCAM</strong></p>
+           		    <p class="textoParrafo" style="font-size: 12px">&nbsp;</p>
+           		    <p class="textoParrafo" style="font-size: 12px">Les deseamos un Feliz comienzo del 2015, con Aventuras, <br>
+       		        descubrimientos y desafíos!!</p>
+           		    <p class="textoParrafo" style="font-size: 12px">&nbsp;</p>
+           		    <p class="textoParrafo" style="font-size: 12px">Te invitamos a escribirnos a <a href="mailto:info@culturademontania.org.ar" target="_blank">info@culturademontania.org.ar</a><br>
+           		    </p>
+                  </div>
+               	  <!--FIN DIV TEXTO EDITORIAL--> 
+					<!-- ================== -->
+                    
+                  <div class="cleaner"></div>
+                    
+            	</article>
+                <!--FIN ARTICLE EDITORIAL--> 
+				<!-- ================== -->
+                
+                
+                
+                <!-- ARTICLE CON NOTICIAS --> 
+				<!-- ================== -->
+                <div class="cont_650px">
+                	<!--DIV TITLE--> 
+					<!-- ================== -->
+            		<div class="titleCont_650px">
+                    	<h1 class="titlePrincipal">Últimas Noticias de  2015</h1>
+                	</div>
+                	<!--FIN DIV TITLE--> 
+					<!-- ================== -->
+                    
+                    <!--DIV NOTICIAS--> 
+					<!-- ================== -->
+                    	<ul id="contNoticiasIndex">
+							<!-- NOTICIA 1--> 
+							<!-- ================== -->
+                       	  <li href="http://www.culturademontania.org.ar/Noticias/cerro-plomo-busca-historia-ninio.html">
+                            <img src="/images/cerro_plomo_cumbre_0.jpg" width="200" height="130" class="fadegray">
+                            <img src="../../images/img-sombraTumb.png" alt="Sombra Tumb"  class="shadTumbNewsIndex">
+<p><span class="titleCont">
+                              <h10>Cerro El Plomo…en busca del 
+misterio del niño, Chile</h10>
+</span></p>
+                          </li>
+                            <!-- FIN NOTICIA 1--> 
+							<!-- ================== -->
+                            
+                            <!-- NOTICIA 2--> 
+							<!-- ================== -->
+                       	  <li href="http://www.culturademontania.org.ar/Noticias/comunicado-de-prensa-ojos-del-salado.html" target="_blank"><img src="../../images/catamarca_ojos_salado_rescate_cuerpo_montanista_espanol_0.jpg" width="200" height="130" class="fadegray"><img src="../../images/img-sombraTumb.png" alt="Sombra Tumb"  class="shadTumbNewsIndex">
+                            <p><span class="titleCont">
+                            <h10>
+                            El Gobierno Vasco difundió un comunicado de compañeros del desaparecido Fernando Osa. Provincia de Catamarca</span></p>
+                          </li>
+                            <!-- FIN NOTICIA 2--> 
+							<!-- ================== -->
+                            
+                            <!-- NOTICIA 3--> 
+							<!-- ================== -->
+                       	  <li href="http://www.culturademontania.org.ar/Noticias/incendio-forestal-villa-la-angostura.html"><strong><img src="/images/rio_negro_incendio_villa_angostura_0.jpg" width="200" height="130" class="fadegray"></strong><img src="../../images/img-sombraTumb.png" alt="Sombra Tumb"  class="shadTumbNewsIndex">
+                            <p><span class="titleCont">
+                            <h10>
+                              <h10>El incendio en la zona entre Villa La Angostura y Bariloche está en etapa 
+de contención. <br>
+Provincias Río Negro y Neuquén</h10>
+                            </h10></span></p>
+          </li>
+                            <!-- FIN NOTICIA 3--> 
+							<!-- ================== -->                           
+                            
+                                                       
+                            <!-- NOTICIA 4--> 
+							<!-- ================== -->
+                       	  <li href="http://www.culturademontania.org.ar/Noticias/andinista-mendocino-perdido-cordon-ansilta.html" target="_blank"><strong><img src="/images/montanista_miguel_castro_0.jpg" width="200" height="130" class="fadegray"></strong><img src="../../images/img-sombraTumb.png" alt="Sombra Tumb"  class="shadTumbNewsIndex"><br>
+<p><span class="titleCont">
+  <h10>Hace 9 días se busca al Andinista mendocino perdido en el Cordón de Ansilta, Provincia de San Juan</h10>
+</span></p>
+              </li>
+                            <!-- FIN NOTICIA 4--> 
+							<!-- ================== -->
+                            
+                            <!-- NOTICIA 5--> 
+							<!-- ================== -->
+                       	  <li href="http://www.culturademontania.org.ar/Noticias/montanista-espanol-murio-ojos-salado-catamarca.html"><strong><img src="/images/catamarca_ojos_salado_rescate_espanoles_0.jpg" width="200" height="130" class="fadegray"></strong><img src="../../images/img-sombraTumb.png" alt="Sombra Tumb"  class="shadTumbNewsIndex">
+                            <p><span class="titleCont">
+                            <h10>
+                              <h10>Lamentablemente el montañista español murió en el volcán Ojos del Salado. Provincia de Catamarca</h10>
+                            </h10></span></p>
+          </li>
+                            <!-- FIN NOTICIA 5--> 
+							<!-- ================== -->                           
+                            
+                                                       
+                            <!-- NOTICIA 6--> 
+							<!-- ================== -->
+                       	  <li href="http://www.culturademontania.org.ar/Noticias/espanoles-esperando-rescate-ojos-salado-catamarca.html" target="_blank"><strong><img src="/images/catamarca_travesia_ojos_salado_ata_cristian_mur_0.jpg" width="200" height="130" class="fadegray"></strong><img src="../../images/img-sombraTumb.png" alt="Sombra Tumb"  class="shadTumbNewsIndex"><br>
+<p><span class="titleCont">
+  <h10>Montañista Español se encuentra en estado grave en el Volcán Ojos del Salado. Provincia de Catamarca</h10>
+</span></p>
+              </li>
+                            <!-- FIN NOTICIA 6--> 
+							<!-- ================== -->
+                            
+                            <!-- NOTICIA 7--> 
+							<!-- ================== -->
+                       	  <li href="http://www.culturademontania.org.ar/Noticias/cuarta-ascension-cerro-negro-mendoza.html"><span class="Estilo228"><img src="/images/mendoza_cerro_negro_pabellon_cumbre_0.jpg" width="200" height="130" class="fadegray"></span><img src="../../images/img-sombraTumb.png" alt="Sombra Tumb"  class="shadTumbNewsIndex"><br>
+                       	    <br>
+                            <p><span class="titleCont">
+                            <h10>Luego de 31 años, Andinistas logran la cuarta ascensión al Cerro Negro Pabellón, Provincia de Mendoza</h10>
+                            </span></p>
+                          </li>
+                            <!-- FIN NOTICIA 7--> 
+							<!-- ================== -->
+                            
+                            <!-- NOTICIA 8--> 
+							<!-- ================== -->
+                       	  <li href="http://www.culturademontania.org.ar/Noticias/santaolalla-grabo-documental-qhapaq-nan.html"><strong><img src="../../images/gustavo_santaolalla_documental_qhapaq_nan_0.jpg" width="200" height="130" class="fadegray"></strong><img src="../../images/img-sombraTumb.png" alt="Sombra Tumb"  class="shadTumbNewsIndex">
+<p><span class="titleCont">
+              <h10>El músico y productor argentino Gustavo Santaolalla grabó documental sobre el Camino Inca</h10>
+                            </span></p>
+                          </li>
+                            <!-- FIN NOTICIA 8--> 
+							<!-- ================== -->
+                            
+                            <!-- NOTICIA 9--> 
+							<!-- ================== -->
+                       	  <li href="http://www.culturademontania.org.ar/Noticias/registro-menor-cantidad-nieve-cordillera-enlas-ultimas-decadas.html">
+                            <img src="../../images/mendoza_laguna_diamante_2007_rodrigo_villarreal_0.jpg" width="200" height="130" class="fadegray">
+                            <img src="../../images/img-sombraTumb.png" alt="Sombra Tumb"  class="shadTumbNewsIndex">
+<p><span class="titleCont">
+                              <h10>
+                                <h10>Un estudio climático en la cordillera registra una alarmante disminución en la caída de nieve</h10>
+                            </h10></span></p>
+                          </li>
+                            <!-- FIN NOTICIA 9--> 
+							<!-- ================== -->
+                            
+                          <!-- NOTICIA 10--> 
+							<!-- ================== -->
+                       	  <li href="http://www.culturademontania.org.ar/Noticias/cumbre-volcan-quewar-diciembre-2014.html"><strong><img src="/images/salta_volcan_quewar_cumbre_griselda_moreno_0.jpg" width="200" height="130" class="fadegray"></strong><img src="../../images/img-sombraTumb.png" alt="Sombra Tumb"  class="shadTumbNewsIndex">
+<p><span class="titleCont">
+                              <h10>Ascendiendo la Cumbre Sagrada del Apu Quewar, Provincia de Salta</h10>
+</span></p>
+                          </li>
+                            <!-- FIN NOTICIA 10--> 
+							<!-- ================== -->
+                            
+                            <!-- NOTICIA 11--> 
+							<!-- ================== -->
+                       	  <li href="http://www.culturademontania.org.ar/Noticias/se-estrello-helicoptero-de-rescate-el-chalten.html"><span class="Estilo228"><img src="/images/santa_cruz_rescate_fitz_roy_0.jpg" width="200" height="130" class="fadegray"></span><img src="../../images/img-sombraTumb.png" alt="Sombra Tumb"  class="shadTumbNewsIndex">
+                            <p>El fin de semana se realizaron rescates en el Chaltén que culminaron trágicamente.<br>
+Provincia de Santa Cruz</p>
+                          </li>
+                            <!-- FIN NOTICIA 11--> 
+							<!-- ================== -->
+                            
+                            <!-- NOTICIA 12--> 
+							<!-- ================== -->
+                       	  <li href="http://www.culturademontania.org.ar/Noticias/dia-internacional-montana-2014.html"><strong><img src="/images/dia_internacional_montana_2014_0.jpg" width="200" height="130" class="fadegray"></strong><img src="../../images/img-sombraTumb.png" alt="Sombra Tumb"  class="shadTumbNewsIndex">
+                            <p><span class="titleCont">
+                            <h10>Que significa el día Internacional<br>
+de las Montañas</h10>
+                            </span></p>
+</li>
+                            <!-- FIN NOTICIA 12--> 
+							<!-- ================== -->
+                            
+                            <!-- NOTICIA 13--> 
+							<!-- ================== -->
+                       	  <li href="http://www.culturademontania.org.ar/Noticias/curso-socorrismo-club-andino-san-luis.html"><span class="Estilo228"><img src="/images/san_luis_curso_socorrismo_casl_0.jpg" width="200" height="130" class="fadegray"></span><img src="../../images/img-sombraTumb.png" alt="Sombra Tumb"  class="shadTumbNewsIndex">
+<p><span class="titleCont">
+                              <h10>El Club Andino San Luis realizó el curso de socorrismo para ambientes agrestes de montaña</h10>
+</span></p>
+                          </li>
+                            <!-- FIN NOTICIA 13--> 
+							<!-- ================== -->                                                      
+                        
+                       	  <!-- NOTICIA 14--> 
+							<!-- ================== -->
+                       	  <li href="http://www.culturademontania.org.ar/Noticias/chalten-capital-nacional-trekking.html"><strong><img src="/images/santa_cruz_chalten_capital_trekking_0.jpg" width="200" height="130" class="fadegray"></strong><img src="../../images/img-sombraTumb.png" alt="Sombra Tumb"  class="shadTumbNewsIndex">
+<p><span class="titleCont">
+                                <h10>El Congreso Nacional aprobó el proyecto de ley: "El Chaltén, Capital Nacional del Trekking".<br>
+Provincia de Santa Cruz</h10>
+</span></p>
+                          </li>
+                            <!-- FIN NOTICIA 14--> 
+							<!-- ================== -->    
+                              
+                       	  <!-- NOTICIA 15--> 
+							<!-- ================== -->
+                       	  <li href="http://www.culturademontania.org.ar/AreasProtegidas/PAR_parque_reserva_nacional_los_glaciares_santa_cruz.htm"><strong><img src="/images/santa_cruz_entrada_parque_nacional_glaciares_fernando_rampezzotti_0.jpg" width="200" height="130" class="fadegray"></strong><img src="../../images/img-sombraTumb.png" alt="Sombra Tumb"  class="shadTumbNewsIndex">
+<p><span class="titleCont">
+                                <h10>Parque Nacional Los Glaciares, Administración de Parques Nacionales, Argentina.<br>
+Provincia de Santa Cruz</h10>
+</span></p>
+                            </li>
+                            <!-- FIN NOTICIA 15--> 
+							<!-- ================== -->                                                                  
+                  </ul>
+                    <!--FIN DIV NOTICIAS--> 
+					<!-- ================== -->
+                    
+                  <div class="cleaner"></div>
+                    
+                </div>
+                <!--FIN ARTICLE CON NOTICIAS--> 
+				<!-- ================== -->
+                
+                
+
+                <!--ARTICLES--> 
+				<!-- ================== -->
+                <div class="cont_650px">
+                    <!--VIDEO DEL MES IZQUIEDO--> 
+					<!-- ================== -->
+                	<article class="cont_315px_article" style="margin:0 20px 0 0;">
+                    	
+                        <!--TITLE VIDEO DEL MES--> 
+						<!-- ================== -->
+                    	<div class="titleCont_315px">
+                        	<h1 class="titlePrincipal">Video del Mes</h1>
+                        </div>
+                        <h2 class="titleSecundario">El Programa de TV &quot;Hoy No Duermo en Casa&quot;<br>
+                          Nos presentan la increíble historia de supervivencia que vivieron los Rugbiers Uruguayos</h2>
+                        
+                        <div class="contImg"> <img src="/images/el_milagro_delos_andes_video1.jpg" alt="Video" border="0" usemap="#Map2">
+                          <map name="Map2">
+                            <area shape="rect" coords="1,0,307,181" href="/Videos/el-milagro-delos-andes-hoy-no-duermo-en-casa.html" target="_blank">
+                          </map>
+       	         </div>
+                        
+                        <!--BOTON VER MAS--> 
+						<!-- ================== -->
+                      <a href="/Videos/el-milagro-delos-andes-hoy-no-duermo-en-casa.html" target="_blank" title="Mira el Video" class="botonAmpliar">Mira el Video</a>
+                        <!--FIN BOTON VER MAS--> 
+						<!-- ================== -->
+                    </article>
+                    <!--FIN VIDEO DEL MES IZQUIEDO--> 
+					<!-- ================== -->
+                    
+                    
+                    <!--LIBRO DEL MES DERECHO--> 
+					<!-- ================== -->
+              <article class="cont_315px_article">
+                    	<!--TITLE LIBRO DEL MES--> 
+						<!-- ================== -->
+                        <div class="titleCont_315px">
+                        	<h1 class="titlePrincipal">Libro del Mes</h1>
+                        </div>
+                <p style="font-size: medium">&nbsp;</p>
+                <table width="315" border="0" cellspacing="0" cellpadding="0">
+				          <tr>
+				            <td width="208"><span class="titleSecundario"><img src="/images/qhapaq_nan_viaje_camino_inca_tapa_01.jpg" alt="Libro del mes" width="200" height="248" border="0" usemap="#Map3"></span></td>
+				            <td width="107"><span class="titleSecundario"><span class="titleCont">
+			                <h10>Qhapaq Ñan.<br>
+			                  Crónica de Viaje por el magnífico camino de los Incas
+			                </h10></span><br>
+			                <br>
+			                Autor: Antonio Beorchia Nigris<br>
+			                Primera edición, 2014
+			                <br>
+				            </span></td>
+	              </tr>
+	            </table>
+
+				  <!--BOTON VER MAS--> 
+				  <!-- ================== -->
+                  <a href="http://www.culturademontania.org.ar/Libros/cronica-de-viaje-por-camino-inca.html" target="_blank" title="Continuas leyendo" class="botonAmpliar">Continuar leyendo</a>
+                  <!--FIN BOTON VER MAS-->
+                  <!-- ================== -->
+
+              </article>
+                    <!--FIN LIBRO DEL MES DERECHO--> 
+					<!-- ================== -->
+                    
+                    
+                    <!--HUMOR IZQUIEDO--> 
+					<!-- ================== -->
+<article class="cont_315px_article" style="margin:0 20px 0 0;">
+                    	
+                        <!--TITLE VIDEO DEL MES--> 
+						<!-- ================== -->
+                    	<div class="titleCont_315px">
+                        	<h1 class="titlePrincipal">Descargá la Aplicación del CCAM</h1>
+                            <span style="font-size: 10px">&nbsp;</span><br>
+                            <a href="http://www.appsgeyser.com/getwidget/CCAM/" target="_blank"><img src="/images/banners/qrcode.jpg" width="314" height="405" tumbBig="/Destacados/Aplicacion_Revista_Digital_CCAM2_INI.jpg" class="imgLightBox"></a>
+                        </div>
+                        
+                  </article>
+                    <!--FIN HUMOR IZQUIEDO--> 
+					<!-- ================== -->
+                    
+                    
+                    <!--FACEBOOK DERECHO--> 
+					<!-- ================== -->
+                    <article class="cont_315px_article">
+                    	<!--TITLE LIBRO DEL MES--> 
+						<!-- ================== -->
+                        <div class="titleCont_315px">
+                        	<h1 class="titlePrincipal">Encuéntranos en Facebook</h1>
+                        </div>
+						<div>
+                        	<br>
+                        	<iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FCentro-Cultural-Argentino-de-Monta%25C3%25B1a%2F164312566948267&amp;width=314&amp;height=405&amp;colorscheme=light&amp;show_faces=true&amp;border_color=%23ffffff&amp;stream=false&amp;header=false&amp;appId=134889483210236" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:314px; height:405px;" allowTransparency="true"></iframe>
+                        </div>
+                        <!--FIN BOTON VER MAS--> 
+						<!-- ================== -->
+                    </article>
+                    <!--FIN FACEBOOK DERECHO--> 
+					<!-- ================== -->
+                    
+                    <div class="cleaner"></div>
+                
+                </div>
+                <!--FIN ARTICLES--> 
+				<!-- ================== -->
+            
+            </section>
+            <!--FIN SECTION--> 
+			<!-- ================== -->
+            
+            <!-- ** -->
+            <!-- ** -->
+            <!-- ** -->
+            <!-- ** -->
+            <!-- ** -->
+            <!-- ** -->
+            <!--ASIDE--> 
+			<!-- ================== -->
+        	<aside id="asideIndex">
+            	
+                <!--Frases del mes--> 
+				<!-- ================== -->
+                <div class="cont_310px">
+                	<div class="titleCont_310px">
+                        <h1 class="titlePrincipal">Frases del mes</h1>
+                    </div>
+                    <div class="contFrases">
+                    <div class="effectContainer">
+                            <!--Frases 1-->
+                            <div class="slideFrase">
+                                <p style="margin:40px 0 0 0;"><span class="frase">"La Tierra y el cielo, bosques y campos, lagos y ríos, las montañas y el mar son excelentes escuelas que nos enseñan muchísimas cosas que no se pueden aprender en los libros."</span><br>
+                                <span class="autorFrase">John Lubbock</span><br>
+                                <span class="historiaFrase">Naturalista ingles</span><br></p>
+                              <img class="overTumbfrase" src="../../images/img-overFrase.png" alt="imagen que cubre la fotografia">
+                              <img class="tumbSlidefrase" src="../../images/img-frase_tumb_3.jpg" alt="Fotografía frase del mes - hombre escalando">
+                            </div>
+                        
+                            <!--Frases 2-->
+                            <div class="slideFrase">
+                                <p style="margin:65px 0 0 0;"><span class="frase">"...Y allí arriba, en la soledad de la cumbre, entre los enhiestos y duros peñascos, un silencio divino, un silencio recreador..."</span><br>
+                                <span class="autorFrase">Miguel de Unamuno</span><br>
+                                <span class="historiaFrase">Escritor y filosofo español</span><br></p>
+                              <img class="overTumbfrase" src="../../images/img-overFrase.png" alt="imagen que cubre la fotografia">
+                              <img class="tumbSlidefrase" src="../../images/img-frase_tumb_4.jpg" alt="Fotografía frase del mes - piqueta en la montaña">
+                      </div>
+                            <!--Frases 2-->
+                            
+                            <!--Frases 3-->
+                            <div class="slideFrase">
+                                <p style="margin:65px 0 0 0;"><span class="frase">"Aquí Nada es amable, todo es grande, osado y abrumador. El mundo de la alta montaña, exige un Amor impetuoso."</span><br>
+                                <span class="autorFrase">Herman Buhl</span><br>
+                                <span class="historiaFrase">Montañista Austríaco</span><br></p>
+                              <img class="overTumbfrase" src="../../images/img-overFrase.png" alt="imagen que cubre la fotografia">
+                              <img class="tumbSlidefrase" src="../../images/img-frase_tumb_5.jpg" alt="Fotografía frase del mes - montañas">
+                      </div>
+                            <!--Frases 3-->
+                            
+                            <!--Frases 4-->
+                            <div class="slideFrase">
+                                <p style="margin:75px 0 0 0;"><span class="frase">"A la montaña se va para ser libres, sin la libertad el alpinismo no existe."</span><br>
+                                <span class="autorFrase">Bruno Destassis</span><br>
+                                <span class="historiaFrase">Escalador italiano</span><br></p>
+                              <img class="overTumbfrase" src="../../images/img-overFrase.png" alt="imagen que cubre la fotografia">
+                              <img class="tumbSlidefrase" src="../../images/img-frase_tumb_6.jpg" alt="Fotografía frase del mes - hombre escalando">
+                      </div>
+                        
+                            <!--Frases 5-->
+                          <div class="slideFrase">
+                                <p style="margin:75px 0 0 0;"><span class="frase">"Las montañas siempre estarán allí, el truco consiste en que tu también estés."</span><br>
+                                <span class="autorFrase">Don Whillans</span><br>
+                                <span class="historiaFrase">Alpinista británico</span><br></p>
+                            <img class="overTumbfrase" src="../../images/img-overFrase.png" alt="imagen que cubre la fotografia">
+                            <img class="tumbSlidefrase" src="../../images/img-frase_tumb_7.jpg" alt="Fotografía frase del mes - piqueta en la montaña">
+                      </div>
+                            <!--Frases 5-->
+                            
+                            <!--Frases 6-->
+                          <div class="slideFrase">
+                                <p style="margin:75px 0 0 0;"><span class="frase">"La montaña no es como los hombres. La montaña es sincera."</span><br>
+                                <span class="autorFrase">Walter Bonatti</span><br>
+                                <span class="historiaFrase">Montañista italiano</span><br></p>
+                            <img class="overTumbfrase" src="../../images/img-overFrase.png" alt="imagen que cubre la fotografia">
+                            <img class="tumbSlidefrase" src="../../images/img-frase_tumb_8.jpg" alt="Fotografía frase del mes - montañas">
+                      </div>
+                            <!--Frases 6-->
+                            
+                            <!--Frases 7-->
+                            <div class="slideFrase">
+                                <p style="margin:40px 0 0 0;"><span class="frase">"Nuestro camino no es por fáciles prados de hierba, sino que es un sendero de montaña escarpado y lleno de dificultades,pero siempre hacia adelante, hacia arriba, hacia el sol."</span><br>
+                                <span class="autorFrase">Ruth Westheimer.</span><br>
+                                <span class="historiaFrase">Socióloga y escritora alemana</span><br></p>
+                              <img class="overTumbfrase" src="../../images/img-overFrase.png" alt="imagen que cubre la fotografia">
+                              <img class="tumbSlidefrase" src="../../images/img-frase_tumb_1.jpg" alt="Fotografía frase del mes - mujer en la ladera de una montaña">
+                      </div>
+                        
+                            <!--Frases 8-->
+                            <div class="slideFrase">
+                                <p style="margin:80px 0 0 0;"><span class="frase">"En la montaña nada hay que reemplace la experiencia."</span><br>
+                                <span class="autorFrase">Louis Audoubert.</span><br>
+                                <span class="historiaFrase">Montañista, fotógrafo y cineasta francés</span><br></p>
+                              <img class="overTumbfrase" src="../../images/img-overFrase.png" alt="imagen que cubre la fotografia">
+                              <img class="tumbSlidefrase" src="../../images/img-frase_tumb_2.jpg" alt="Fotografía frase del mes - hombre mirando el infinito">
+                      </div>
+                            <!--Frases 8-->
+                            
+                            <!--Frases 9-->
+                            <div class="slideFrase">
+                                <p style="margin:65px 0 0 0;"><span class="frase">"Después de escalar una montaña muy alta, descubrimos que hay muchas otras montañas por escalar."</span><br>
+                                <span class="autorFrase">Nelson Mandela.</span><br>
+                                <span class="historiaFrase">Político Sudafricano</span><br></p>
+                              <img class="overTumbfrase" src="../../images/img-overFrase.png" alt="imagen que cubre la fotografia">
+                              <img class="tumbSlidefrase" src="../../images/img-frase_tumb_1.jpg" alt="Fotografía frase del mes - mujer en la ladera de una montaña">
+                      </div>
+                            <!--Frases 9-->
+                            
+                            <!--Frases 10-->
+                          <div class="slideFrase">
+                                <p style="margin:75px 0 0 0;"><span class="frase">"El autentico andinismo no es un deporte, sino una forma muy profunda de mirar y vivir la vida…"</span><br>
+                                <span class="autorFrase">Andrés Hurtado García</span><br>
+                                <span class="historiaFrase">Ecologista colombiano</span><br></p>
+                            <img class="overTumbfrase" src="../../images/img-overFrase.png" alt="imagen que cubre la fotografia">
+                            <img class="tumbSlidefrase" src="../../images/img-frase_tumb_7.jpg" alt="Fotografía frase del mes - piqueta en la montaña">
+                      </div>
+                            <!--Frases 10-->
+                     </div>
+                  </div>
+                </div>
+                <!--Fin Frases del mes--> 
+				<!-- ================== -->
+                
+                
+                <!--Suscribcion a Facebook--> 
+				<!-- ================== -->
+                <div class="cont_310px">
+                	<div class="titleCont_310px">
+                        <h1 class="titlePrincipal">Suscribite a Noticias de Montaña</h1>
+                    </div>
+                	<div style="margin:10px 0 0 0;">
+                    	<!-- Amigos En noticias de montaña -->
+                        <div>
+                        <img src="../../images/img-icoFace.jpg" alt="Icono Facebook"><a class="textoCorridoImport" style="color:#000; text-decoration:none;">  Amigos en Facebook </a><span class="textoCorridoImport" style="color:#3b5998;">5000</span>
+                        </div>
+                        
+                        <!-- IFRAME FACEBOOK -->
+                        <div  style="margin:10px 0 0 0;">
+                        	<iframe src="//www.facebook.com/plugins/subscribe.php?href=http%3A%2F%2Fwww.facebook.com%2Fnoticiasde.montana&amp;layout=standard&amp;show_faces=false&amp;colorscheme=light&amp;font=lucida+grande&amp;height=40&amp;width=310&amp;appId=134889483210236" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:310px; height:40px;" allowTransparency="true"></iframe>
+                        </div>
+                        
+                        <!-- AMIGAS FACEBOOK -->
+                        <div><a href="http://www.facebook.com/noticiasde.montana" target="_blank"><img src="../../images/img-facebookProfile.jpg" alt="Amigos de Facebook"></a></div>
+                    </div>
+                </div>
+                <!--Fin Suscribcion a Facebook--> 
+				<!-- ================== -->
+                
+                <!--patrocinadores--> 
+				<!-- ================== -->
+                <div class="cont_310px">
+                	<!--<div class="titleCont_310px">
+                        <!--<h1 class="titlePrincipal"></h1>
+                    </div>-->
+                    <ul id="listaPatrocinadores">
+                        <li>
+                          <img src="../../images/banner_makalu.jpg" alt="Banner Patrocinador Makalu" width="310" height="160" border="0" usemap="#MapMapMap">
+                            <map name="MapMapMap">
+                              <area shape="rect" coords="1,-16,314,374" href="http://www.makalu.com.ar/" target="_blank">
+                          </map>
+</li>
+                        <li>
+                          <img src="../../images/banner_optitech.jpg" alt="Banner Patrocinador Optitech" width="310" height="160" border="0" usemap="#MapMapMap2">
+                            <map name="MapMapMap2">
+                              <area shape="rect" coords="1,0,314,246" href="http://www.optitech.com.ar/" target="_blank">
+                          </map>
+                        </li>
+                        <li>
+                          <img src="../../images/banner_turismonacion.jpg" alt="Banner Turismo de la Nacion" width="310" height="160" border="0" usemap="#MapMapMap3">
+                            <map name="MapMapMap3">
+                              <area shape="rect" coords="1,0,314,246" href="http://www.turismo.gov.ar/" target="_blank">
+                          </map>
+                        </li>
+                        <li>
+                          <img src="../../images/banner_parques_nacionales.jpg" alt="Banner Parques Nacionales" width="310" height="160" border="0" usemap="#MapMapMap4">
+                            <map name="MapMapMap4">
+                              <area shape="rect" coords="1,0,314,246" href="http://www.parquesnacionales.gob.ar/" target="_blank">
+                          </map>
+                        </li>                                                
+                        <li>
+                          <img src="../../images/banner_foto.jpg" alt="Banner Material Fotográfico" width="310" height="500" border="0" usemap="#MapMap">
+                            <map name="MapMap">
+                              <area shape="rect" coords="4,0,314,498" href="mailto:info@culturademontania.org.ar" target="_blank">
+                          </map>
+                      </li>
+                        <li>
+                          <img src="../../images/banner_weekend.jpg" alt="Banner Patrocinador Weenkend" border="0" usemap="#MapMapMap3">
+                            <map name="MapMapMap3">
+                              <area shape="rect" coords="1,0,314,157" href="http://www.weekend.com.ar/" target="_blank">
+                          </map>
+                        </li>
+<!--                        <li>
+                       	  <img src="../../images/banner_alBorde.jpg" alt="Banner Patrocinador Al Borde" border="0" usemap="#MapMapMap4">
+                        	<map name="MapMapMap4">
+                        	  <area shape="rect" coords="1,0,314,157" href="http://www.alborde.com.ar/" target="_blank">
+                      	  </map>
+                        </li> -->
+                        <li>
+                          <img src="../../images/banner_halawa.jpg" alt="Banner Patrocinador Halawa" border="0" usemap="#MapMapMap5">
+                            <map name="MapMapMap5">
+                              <area shape="rect" coords="1,0,314,157" href="http://www.halawa.com.ar/" target="_blank">
+                          </map>
+                        </li>
+                        <li>
+                          <img src="../../images/banner_equipoccam.jpg" alt="Banner Patrocinador Weenkend" usemap="#Map">
+                          <map name="Map">
+                            <area shape="rect" coords="1,23,314,180" href="http://www.culturademontania.org.ar/pedido_CCAM10.htm" target="_blank">
+                          </map>
+                      </li>                              
+                        
+                    </ul>
+                </div>
+                <!--Fin patrocinadores--> 
+				<!-- ================== -->
+                
+               
+            </aside>
+            
+            <!-- ** -->
+            <!-- ** -->
+            <!-- ** -->
+            <!-- ** -->
+            <!-- ** -->
+            <!-- ** -->
+            <!--Banner Bottom-->
+            <div id="contBannerBottom">
+            	<a href="http://www.culturademontania.org.ar/suscripcion.htm" target="_blank"><img src="../../images/img-bannerBottom-980px.jpg" alt="Acompáñanos en esta gran aventura - Sé parte del equipo de CCAM - ÚNETE AHORA" border="1"></a>
+            </div> 
+    </div>
+        <!-- FIN CONTENEDOR PAGE --> 
+		<!-- ================== -->
+        <!-- ** -->
+        <!-- ** -->
+        <!-- ** -->
+        <!-- ** -->
+        <!-- ** -->
+        <!-- ** -->
+</div>
+    <!-- DIV CONTENEDOR --> 
+	<!-- ================== -->
+    
+    <!-- FOOTER --> 
+	<!-- ================== -->
+    <footer>
+    	<div id="contFooter">
+        	<div id="logoFooter">
+            
+            	<!-- CONTENEDOR LOGO --> 
+				<!-- ================== -->
+            	<div id="contLogoHeader">
+               	  <img src="../../images/img-logoHeader.png" alt="Centro Cultural Agentino de Montaña - go Index">
+                </div>
+                <!-- FIN CONTENEDOR LOGO --> 
+				<!-- ================== -->
+                
+                <!-- CONTENEDOR TITULO --> 
+				<!-- ================== -->
+                <div id="contTitulo">
+                	<ul>
+                    	<li>
+                			<h1>CENTRO CULTURAL ARGENTINO de MONTAÑA</h1>
+                        </li>
+                        <li>
+                    		<span>POR UNA CULTURA DE MONTAÑA ARGENTINA.</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                
+            </div>
+        </div>
+    	
+    </footer>
+    <!-- FOOTER --> 
+	<!-- ================== -->
+    
+
+<map name="Map3">
+  <area shape="rect" coords="5,3,194,245" href="/Libros/cronica-de-viaje-por-camino-inca.html" target="_blank">
+</map>
+</body>
+</html>

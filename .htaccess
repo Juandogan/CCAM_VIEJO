@@ -1,0 +1,7 @@
+<FilesMatch "\.(inc|php|phtml|phps|php55|htm|html)$">
+	AddHandler "proxy:unix:/usr/local/php55/sockets/nati2009.sock|fcgi://localhost" .inc .php .phtml .php55 .htm .html
+</FilesMatch>
+
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^culturademontania.com.ar [NC]
+RewriteRule ^(.*)$ http://www.culturademontania.org.ar/$1 [L,R=301]
